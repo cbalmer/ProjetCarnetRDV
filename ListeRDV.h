@@ -1,6 +1,13 @@
 #ifndef LISTERDV_H
 #define LISTERDV_H
 
+struct RDV{
+    int jour;
+    int mois;
+    int annee;
+    int heureDebut;
+    int heureFin;
+};
 
 class ListeRDV
 {
