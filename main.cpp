@@ -1,9 +1,17 @@
 #include <iostream>
-
-using namespace std;
+#include "Date.h"
 
 int main()
 {
-    cout << "Hello world!" << endl;
+    Date date;
+
+    std::cout << date.str() << std::endl;
+    date++;
+    std::cout << date.str() << std::endl;
+    ++date;
+	std::cout << date.str() << std::endl;
+	date--;
+	--date;
+	std::cout << date.str() << std::endl;
     return 0;
 }

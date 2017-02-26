@@ -2,30 +2,29 @@
 #define DATE_H
 
 #include <string>
-#include <map>
+#include <sstream>
+#include <ctime>
 
 class Date
 {
-
-	public:static Date aujourdhui();
-
 	public:
 		Date();
-		Date(int jour, int mois, int annee);
 
-		std::string nomJour() const;
+		std::string jourSemaine() const;
 		int annee() const;
 		int mois() const;
 		int jour() const;
 
-		std::string affiche() const;
+		std::string str() const;
 
-	private:static std::map<int,string> nomJour;
+		Date& operator++();
+		Date operator++(int);
+
+		Date& operator--();
+		Date operator--(int);
+
 	private:
-		int _annee;
-		int _mois;
-		int _jour;
-		int _jourSemaine;
+		time_t _time;
 };
 
 #endif
