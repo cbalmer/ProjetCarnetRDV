@@ -17,9 +17,11 @@ class Date
 
 		std::string str() const;
 
+		//avance d'un jour
 		Date& operator++();
 		Date operator++(int);
 
+		//recule d'un jour
 		Date& operator--();
 		Date operator--(int);
 
