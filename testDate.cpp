@@ -4,15 +4,7 @@
 int main()
 {
 
-	Date d;
+	Date d(8,4,1996);
 
-	std::cout << d.str() << std::endl;
-	d++;
-	std::cout << d.str() << std::endl;
-	d--;
-	std::cout << d.str() << std::endl;
-	d+=4;
-	std::cout << d.str() << std::endl;
-	d-=30;
 	std::cout << d.str() << std::endl;
 }
