@@ -1,5 +1,4 @@
 #include <iostream>
-#include "Date.h"
 #include "Horaire.h"
 
 int main()

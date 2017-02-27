@@ -32,6 +32,7 @@ class Horaire
 		bool decaleHeure(int c);
 		bool decaleMinute(int c);
 
+		//renvoie l'horaire sous forme d'une chaine de type "HHhMM";
 		std::string str() const;
 
 

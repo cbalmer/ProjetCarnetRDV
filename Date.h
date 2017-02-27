@@ -25,6 +25,9 @@ class Date
 		Date& operator--();
 		Date operator--(int);
 
+		Date& operator+=(int c);
+		Date& operator-=(int c);
+
 	private:
 		time_t _time;
 };

@@ -56,24 +56,11 @@ int Date::jour() const
 
 std::string Date::str() const
 {
-	char str[100];
+	char str[100] = {'\0'};
 
 	strftime(str,100,"%A %d %B %Y",localtime(&_time));
-	std::istringstream iss(str);
 
-	std::string ret, b;
-	iss >> ret;
-	ret += " ";
-	iss >> b;
-	ret += b;
-	ret += " ";
-	iss >> b;
-	ret += b;
-	ret += " ";
-	iss >> b;
-	ret += b;
-
-	return ret;
+	return std::string(str);
 }
 
 Date& Date::operator++()
@@ -98,5 +85,15 @@ Date Date::operator--(int)
 	return --(*this);
 }
 
+Date& Date::operator+=(int c)
+{
+	_time += 24*60*60*c;
+	return *this;
+}
 
+Date& Date::operator-=(int c)
+{
+	_time -= 24*60*60*c;
+	return *this;
+}
 
