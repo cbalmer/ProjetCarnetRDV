@@ -5,6 +5,20 @@
 Date::Date(): _time(time(NULL))
 {}
 
+Date::Date(int j, int m, int a)
+{
+	tm* d;
+	time_t t = time(NULL);
+
+	d = localtime(&t);
+
+	d->tm_year = a - 1900;
+	d->tm_mon = m-1;
+	d->tm_mday = j;
+
+	_time = mktime(d);
+}
+
 std::string Date::jourSemaine() const
 {
 	char str[10];

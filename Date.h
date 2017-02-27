@@ -9,6 +9,7 @@ class Date
 {
 	public:
 		Date();
+		Date(int j, int m, int a);
 
 		std::string jourSemaine() const;
 		int annee() const;
