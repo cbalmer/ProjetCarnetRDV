@@ -7,28 +7,36 @@ Date::Date(): _time(time(NULL))
 
 Date::Date(int j, int m, int a)
 {
-	tm* d;
-	time_t t = time(NULL);
+	tm* d;//structure contenant des infos temporelles
+	time_t t = time(NULL);//récupération du temps actuel
 
-	d = localtime(&t);
+	d = localtime(&t);//initialisation de la structure tm
+	/*
+		ici on utilise cette fonction afin d'initialiser correctement tous les champs de la structure tm
+	*/
 
 	d->tm_year = a - 1900;
 	d->tm_mon = m-1;
 	d->tm_mday = j;
+	/*
+		on modifie certains champs de tm afin de les faire correspondre à la date voulue
+	*/
 
-	_time = mktime(d);
+	_time = mktime(d);//on récupère la date voulue sous forme de secondes écoulés depuis le 1er janvier 1970 
 }
 
 std::string Date::jourSemaine() const
 {
 	char str[10];
 
-	strftime(str,10,"%A",localtime(&_time));
+	strftime(str,10,"%A",localtime(&_time));//on récupère du jour de la semaine correspondant à la date
 	std::istringstream iss(str);
 
 	std::string ret;
-	iss >> ret;
-
+	iss >> ret;/*récupération du jour de la semaine via un flux sur chaine de caractères
+	
+	ici on utilise un flux 
+	*/
 	return ret;
 }
 
