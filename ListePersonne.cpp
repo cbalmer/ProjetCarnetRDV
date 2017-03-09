@@ -12,61 +12,63 @@ ListePersonne::~ListePersonne()
         p=ps;
     }
 }
-bool ListePersonne::estDouble(Personne *pe)
-{
-    Personne *n=new Personne;
-    std::cin >> pe->nom;
-    std::cin>> pe->prenom;
-    if(pe->nom == n->nom && pe->prenom ==n->prenom)
-    {
-        return true;
-    }
-    else
-        return false;
-}
+//bool ListePersonne::estDouble(Personne *pe)
+//{
+//    Personne *n=new Personne;
+//    std::cin >> pe->nom;
+//    std::cin>> pe->prenom;
+//    if(pe->nom == n->nom && pe->prenom ==n->prenom)
+//    {
+//        return true;
+//    }
+//    else
+//        return false;
+//}
+
 bool ListePersonne::estRDV(Personne *pe,RDV *rd)
+{}
+void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel, std::string mail)
 {
-    std::cin >> pe->nom >> pe->prenom;
-    if (pe->nom && pe->prenom == rd->jour &&rd->mois&&rd->heureDebut&&rd->heureFin)
-    {
-        return true;
-    }
-    else
-        return false;
-}
-void ListePersonne::ajouter(Personne *pe)
-{
-    Personne *n=new Personne();
-    if(estDouble(pe)==false)
-    {
-        n->pe=pe;
-        n->suiv=0;
-        if (p==0)
+    Personne *pe=new Personne;
+    pe->nom=nom;
+    pe->prenom=prenom;
+    pe->tel=tel;
+    pe->mail=mail;
+    pe->suiv=0;
+
+        if(p==0)
         {
-            p=n;
-        }
-        else if (pe < p -> pe)
-        {
-            n->suiv=p;
-            p=n;
+            p=pe;
         }
         else
         {
-            Personne *p1 = p ,*p2 = p ->suiv;
-            while(p2!=0  pe>p2->pe)
+            Personne *curs=new Personne;
+            curs=p;
+            while(curs->suiv!=0)
             {
-                p1=p2;
-                p2=p2->suiv;
+                curs=curs->suiv;
             }
-            p1->suiv=n;
-            n->suiv=p2;
+            if(curs->suiv==0)
+            {
+                curs->suiv=pe;
+            }
+            else
+            {
+                pe->suiv=curs->suiv;
+                curs->suiv=pe;
+            }
+
+
+
         }
-    }
-    else
-        std::cout<<"Erreur: Cette personne existe deja et ne peut pas etre ajoutee."<<endl;
-
+        Personne  *curs=p;
+         while(curs->suiv!=0)
+            {
+                std::cout<<curs->nom<<std::endl;
+                curs=curs->suiv;
+            }
 }
-
+/*
 void ListePersonne::supprimer(Personne *pe)
 {
     if(estRDV(pe,rd)==false)
@@ -99,8 +101,14 @@ void ListePersonne::supprimer(Personne *pe)
         std::cout<<"Erreur: Cette personne est encore inscris dans un rendez-vous et ne peut pas etre supprimee."<<endl;
 }
 
-
+*/
 int main()
 {
+    ListePersonne lp;
+
+    lp.ajouter("toto","alyssa","062606060626","fdziosf");
+    lp.ajouter("toto","tata","062606060626","fdziosf");
+    lp.ajouter("toto","Banner","062606060626","fdziosf");
+   lp.ajouter("toto","connor","062606060626","fdziosf");
 	return 0;
 }
