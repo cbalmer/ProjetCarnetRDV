@@ -12,6 +12,23 @@ ListePersonne::~ListePersonne()
         p=ps;
     }
 }
+//void ListePersonne:: modifier(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail)
+//{
+//    bool trouver=false;
+//    Personne *curs=p;
+//    while(curs!=0 && !trouver)
+//    {
+//        if(curs->nom==nom && curs->prenom==prenom)
+//        {
+//            trouver=true;
+//            curs->nom=nouveaunom;
+//            curs->prenom==prenom;
+//            curs->tel=tel;
+//            curs->mail=mail;
+//        }
+//        curs=curs->suiv;
+//    }
+//}
 //pk !curs dont work
 bool ListePersonne::estDouble(Personne *pe)
 {
@@ -138,7 +155,7 @@ int main()
     ListePersonne lp;
 
     lp.ajouter("toto","Alice","062606060626","fdziosf");
-     lp.ajouter("tota","Alice","062606060626","fdziosf");
+     lp.ajouter("toto","Alice","062606060626","fdziosf");
     lp.ajouter("toto","albert","062606060626","fdziosf");
     lp.ajouter("toto","Banner","062606060626","fdziosf");
    lp.ajouter("toto","connor","062606060626","fdziosf");
