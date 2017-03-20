@@ -68,6 +68,24 @@ void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel,
                 curs=curs->suiv;
             }
 }
+//aide prof
+Personne *c1=l.t, *precC=0;
+if{c1==0}
+{
+	//liste vide
+	return 0;
+}
+if(c1->n<nom)
+{
+	//insert tete
+	return 0;
+}
+
+while(c1!=0 && c1->n>n)
+{
+	precC=c1;
+	c1=c1->suiv;
+}
 /*
 void ListePersonne::supprimer(Personne *pe)
 {
