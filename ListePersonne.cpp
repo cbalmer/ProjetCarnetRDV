@@ -26,8 +26,7 @@ bool ListePersonne::estDouble(Personne *pe)
     return estdouble;
 }
 
-bool ListePersonne::estRDV(Personne *pe,RDV *rd)
-{}
+
 void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel, std::string mail)
 {
     Personne *pe=new Personne;
@@ -53,7 +52,7 @@ void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel,
             }
             else
             {
-                while(curs!=0 && curs->nom<nom)
+                while(curs!=0 && curs->nom<=nom)
                 {
                     preC=curs;
                     curs=curs->suiv;
@@ -139,7 +138,7 @@ int main()
     ListePersonne lp;
 
     lp.ajouter("toto","Alice","062606060626","fdziosf");
-     lp.ajouter("toto","Alice","062606060626","fdziosf");
+     lp.ajouter("tota","Alice","062606060626","fdziosf");
     lp.ajouter("toto","albert","062606060626","fdziosf");
     lp.ajouter("toto","Banner","062606060626","fdziosf");
    lp.ajouter("toto","connor","062606060626","fdziosf");
