@@ -1,0 +1,23 @@
+listPersonne
+Supprimer camcam	
+modifier camcam
+rechercherpersonne(nom,prenom)
+
+ListRDV
+supprimer camille
+3 modification date nathan
+
+CarnetRDV
+creeRDv x2 nathan
+supprimerTDV nathan 
+ajouterPersonne camcam
+supprimerPersonne renaud 
+AjouterPersonneRDV camtouille
+SupprimerPersonneRDV  camtouille
+estRDV renaud 
+AfficherRDv camcam 
+ESt dispo renaud 
+afficherPersonne renaud 
+
+GUI console
+ 
