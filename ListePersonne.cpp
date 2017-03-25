@@ -12,31 +12,18 @@ ListePersonne::~ListePersonne()
         p=ps;
     }
 }
-void ListePersonne:: modifier(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail)
-{
-    bool trouver=false;
-    Personne *curs=p;
-    while(curs!=0 && !trouver)
-    {
-        if(curs->nom==nom && curs->prenom==prenom)
-        {
-            trouver=true;
-            curs->nom=nouveaunom;
-            curs->prenom==prenom;
-            curs->tel=tel;
-            curs->mail=mail;
-        }
-        curs=curs->suiv;
-    }
-}
+
+
+
 //pk !curs dont work
-bool ListePersonne::estDouble(Personne *pe)
+bool ListePersonne::estDouble(std::string  &nom, std::string  &prenom)
 {
+    nom[0]=std::toupper(nom[0]);
     bool estdouble=false;
     Personne *curs=p;
     while(curs!=0 && !estdouble)
     {
-        if(curs->nom==pe->nom && curs->prenom==pe->prenom)
+        if(curs->nom==nom && curs->prenom==prenom)
             estdouble=true;
         curs=curs->suiv;
     }
@@ -44,7 +31,7 @@ bool ListePersonne::estDouble(Personne *pe)
 }
 
 
-void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel, std::string mail)
+void ListePersonne::ajouter(std::string &prenom, std::string &nom,std::string &tel, std::string &mail)
 {
     Personne *pe=new Personne;
     nom[0]=std::toupper(nom[0]);
@@ -53,7 +40,7 @@ void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel,
     pe->tel=tel;
     pe->mail=mail;
     pe->suiv=0;
-    if(!estDouble(pe))
+    if(!estDouble(pe->nom,pe->prenom))
     {
         if(p==0)
         {
@@ -117,8 +104,9 @@ void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel,
 
 
 
-void ListePersonne::supprimer(std::string prenom, std::string nom)
+void ListePersonne::supprimer(std::string &prenom, std::string &nom)
 {
+    nom[0]=std::toupper(nom[0]);
     if(p!=0)
     {
         if(p->nom ==nom && p->prenom==prenom)
@@ -130,24 +118,93 @@ void ListePersonne::supprimer(std::string prenom, std::string nom)
         else
         {
             Personne *curs=p;
-            while(curs!=0 && curs->nom==mom && curs->prenom==prenom)
+            Personne *Preccurs=0;
+            while(curs!=0 )
             {
-
+                if(curs->nom==nom && curs->prenom==prenom)
+                {
+                   break;
+                }
+                Preccurs=curs;
+                curs=curs->suiv;
+            }
+            if(curs!=0)
+            {
+                Preccurs->suiv=curs->suiv;
+                delete curs;
             }
         }
-
+    }
+}
+void ListePersonne::afficherlistpersonne()
+{
+    Personne *curs=p;
+    while(curs!=0)
+    {
+        std::cout<<curs->nom<<std::endl;
+         std::cout<<curs->prenom<<std::endl;
+          std::cout<<curs->mail<<std::endl;
+           std::cout<<curs->tel<<std::endl;
+           std::cout<<std::endl;
+        curs=curs->suiv;
+    }
+    std::cout<<"----------------------------------------------------"<<std::endl;
+}
+void ListePersonne:: modifier(std::string &prenom, std::string &nom,std::string &nouveaunom,std::string &nouveauprenom,std::string &tel, std::string &mail)
+{
+    nom[0]=std::toupper(nom[0]);
+    nouveaunom[0]=std::toupper(nouveaunom[0]);
+    bool trouver=false;
+    Personne *curs=p;
+    while(curs!=0 && !trouver)
+    {
+        if(curs->nom==nom && curs->prenom==prenom)
+        {
+            trouver=true;
+            supprimer(prenom,nom);
+            ajouter(nouveauprenom,nouveaunom,tel,mail);
+        }
+        curs=curs->suiv;
     }
 }
 
+Personne* ListePersonne::rechercherPersonne(std::string  &nom, std::string  &prenom)
+ {
+    Personne *curs=p;
+    while(curs!=0 )
+    {
+        if(curs->nom==nom && curs->prenom==prenom)
+        {
+           break;
+        }
+        curs=curs->suiv;
+    }
+    return curs;
+ }
 
 int main()
 {
     ListePersonne lp;
-
+    std:: string nom="toto",prenom="Alice",tel="",mail="";
+    lp.ajouter(nom,prenom,tel,mail);
     lp.ajouter("toto","Alice","062606060626","fdziosf");
-     lp.ajouter("toto","Alice","062606060626","fdziosf");
     lp.ajouter("toto","albert","062606060626","fdziosf");
     lp.ajouter("toto","Banner","062606060626","fdziosf");
-   lp.ajouter("toto","connor","062606060626","fdziosf");
+    lp.ajouter("toto","connor","062606060626","fdziosf");
+    lp.afficherlistpersonne();
+    lp.supprimer("toto","Alice");
+    lp.afficherlistpersonne();
+    lp.modifier("toto","albert","couillons","toto","0612346500","hypoter@hotmail.fr");
+    lp.afficherlistpersonne();
+    Personne *perso=lp.rechercherPersonne("Banner","tito");
+    if(perso!=0)
+    {
+        std::cout<<perso->nom<<std::endl;
+        std::cout<<perso->prenom<<std::endl;
+        std::cout<<perso->mail<<std::endl;
+        std::cout<<perso->tel<<std::endl;
+        std::cout<<std::endl;
+    }
+
 	return 0;
 }

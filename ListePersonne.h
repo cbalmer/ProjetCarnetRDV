@@ -15,18 +15,13 @@ class ListePersonne
     public:
         ListePersonne();
         ~ListePersonne();
-  //    ListePersonne(Personne &p); vraiment utile de faire ce constructeur ?
-      void ajouter(std::string prenom, std::string nom,std::string tel, std::string mail);
-        void supprimer(std::string prenom, std::string nom);
-        void modifier(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail);
-       // bool estDouble(std::string prenom, std::string nom,std::string tel, std::string mail);
-/*
-        void ajouter(Personne *pe); //Permet l'ajout d'une personne*/
-        //void supprimer(Personne *pe); //Permet la suppression d'une personne
-        //void modifier(Personne *pe);// Permet la modification d'une personne
-        bool estDouble(Personne *pe);// permet de voir si une personne est déjà en contact
-
-
+        //    ListePersonne(Personne &p); vraiment utile de faire ce constructeur ?
+        void ajouter(std::string &prenom, std::string &nom,std::string &tel, std::string &mail);
+        void supprimer(std::string  &prenom, std::string &nom);
+        void modifier(std::string &prenom, std::string &nom,std::string &nouveaunom,std::string &nouveauprenom,std::string &tel, std::string &mail);
+        bool estDouble(std::string  &nom, std::string  &prenom);// permet de voir si une personne est déjà en contact
+        void afficherlistpersonne();
+        Personne* rechercherPersonne(std::string  &nom, std::string  &prenom);
     private:
     	Personne *p;
 };
