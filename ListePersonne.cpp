@@ -12,23 +12,23 @@ ListePersonne::~ListePersonne()
         p=ps;
     }
 }
-//void ListePersonne:: modifier(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail)
-//{
-//    bool trouver=false;
-//    Personne *curs=p;
-//    while(curs!=0 && !trouver)
-//    {
-//        if(curs->nom==nom && curs->prenom==prenom)
-//        {
-//            trouver=true;
-//            curs->nom=nouveaunom;
-//            curs->prenom==prenom;
-//            curs->tel=tel;
-//            curs->mail=mail;
-//        }
-//        curs=curs->suiv;
-//    }
-//}
+void ListePersonne:: modifier(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail)
+{
+    bool trouver=false;
+    Personne *curs=p;
+    while(curs!=0 && !trouver)
+    {
+        if(curs->nom==nom && curs->prenom==prenom)
+        {
+            trouver=true;
+            curs->nom=nouveaunom;
+            curs->prenom==prenom;
+            curs->tel=tel;
+            curs->mail=mail;
+        }
+        curs=curs->suiv;
+    }
+}
 //pk !curs dont work
 bool ListePersonne::estDouble(Personne *pe)
 {
@@ -85,13 +85,13 @@ void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel,
                 }
             }
         }
-        Personne  *curse=p;
-        while(curse!=0)
-        {
-            std::cout<<curse->nom<<std::endl;
-            curse=curse->suiv;
-        }
-        std::cout << "---------------------------"<<std::endl;
+//        Personne  *curse=p;
+//        while(curse!=0)
+//        {
+//            std::cout<<curse->nom<<std::endl;
+//            curse=curse->suiv;
+//        }
+//        std::cout << "---------------------------"<<std::endl;
     }
 }
 //aide prof
@@ -117,38 +117,28 @@ void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel,
 
 
 
-//void ListePersonne::supprimer(Personne *pe)
-//{
-//    if(estRDV(pe,rd)==false)
-//    {
-//        if(p==0)
-//        {
-//        }
-//        else if(p->pe==pe)
-//        {
-//            Personne *tmp=p;
-//            p=p->suiv;
-//            delete tmp;
-//        }
-//        else
-//        {
-//            Personne *p1=p,*p2=p->suiv;
-//            while(p2!=0  p2->pe!=pe)
-//            {
-//                p1=p2;
-//                p2=p2->suiv;precC
-//            }
-//            if(p2!=0)
-//            {
-//                p1->suiv=p2->suiv;
-//                delete p2;
-//            }
-//        }
-//    }
-//    else
-//        std::cout<<"Erreur: Cette personne est encore inscris dans un rendez-vous et ne peut pas etre supprimee."<<endl;
-//}
-//
+void ListePersonne::supprimer(std::string prenom, std::string nom)
+{
+    if(p!=0)
+    {
+        if(p->nom ==nom && p->prenom==prenom)
+        {
+            Personne *supprP=p;
+            p=p->suiv;
+            delete supprP;
+        }
+        else
+        {
+            Personne *curs=p;
+            while(curs!=0 && curs->nom==mom && curs->prenom==prenom)
+            {
+
+            }
+        }
+
+    }
+}
+
 
 int main()
 {
