@@ -1,7 +1,7 @@
 listPersonne
-Supprimer camcam	
-modifier camcam
-rechercherpersonne(nom,prenom)
+Supprimer camcam fait 	
+modifier camcam fait
+rechercherpersonne(nom,prenom) camcam fait 
 
 ListRDV
 supprimer camille
@@ -10,14 +10,17 @@ supprimer camille
 CarnetRDV
 creeRDv x2 nathan
 supprimerTDV nathan 
-ajouterPersonne camcam
+
 supprimerPersonne renaud 
 AjouterPersonneRDV camtouille
 SupprimerPersonneRDV  camtouille
 estRDV renaud 
-AfficherRDv camcam 
 ESt dispo renaud 
 afficherPersonne renaud 
+getlespersonnesduRDv camtouille
+AfficherRDv camcam 
+ajouterPersonne camcam fait 
+
 
 GUI console
  

@@ -21,6 +21,7 @@ class ListePersonne
         void modifier(std::string &prenom, std::string &nom,std::string &nouveaunom,std::string &nouveauprenom,std::string &tel, std::string &mail);
         bool estDouble(std::string  &nom, std::string  &prenom);// permet de voir si une personne est déjà en contact
         void afficherlistpersonne();
+        std::string afficherListpersonne();
         Personne* rechercherPersonne(std::string  &nom, std::string  &prenom);
     private:
     	Personne *p;

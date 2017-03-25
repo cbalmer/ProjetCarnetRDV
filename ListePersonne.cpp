@@ -181,30 +181,44 @@ Personne* ListePersonne::rechercherPersonne(std::string  &nom, std::string  &pre
     }
     return curs;
  }
-
-int main()
+ std::string ListePersonne::afficherListpersonne()
 {
-    ListePersonne lp;
-    std:: string nom="toto",prenom="Alice",tel="",mail="";
-    lp.ajouter(nom,prenom,tel,mail);
-    lp.ajouter("toto","Alice","062606060626","fdziosf");
-    lp.ajouter("toto","albert","062606060626","fdziosf");
-    lp.ajouter("toto","Banner","062606060626","fdziosf");
-    lp.ajouter("toto","connor","062606060626","fdziosf");
-    lp.afficherlistpersonne();
-    lp.supprimer("toto","Alice");
-    lp.afficherlistpersonne();
-    lp.modifier("toto","albert","couillons","toto","0612346500","hypoter@hotmail.fr");
-    lp.afficherlistpersonne();
-    Personne *perso=lp.rechercherPersonne("Banner","tito");
-    if(perso!=0)
+    std::string chaine="";
+    Personne *curs=p;
+    while(curs!=0)
     {
-        std::cout<<perso->nom<<std::endl;
-        std::cout<<perso->prenom<<std::endl;
-        std::cout<<perso->mail<<std::endl;
-        std::cout<<perso->tel<<std::endl;
-        std::cout<<std::endl;
+        chaine+=curs->nom+"\n";
+        chaine+=curs->prenom+"\n";
+        chaine+=curs->tel+"\n";
+        chaine+=curs->mail+"\n";
+        curs=curs->suiv;
     }
+    return chaine;
 
-	return 0;
 }
+//int main()
+//{
+//    ListePersonne lp;
+//    std:: string nom="toto",prenom="Alice",tel="",mail="";
+//    lp.ajouter(nom,prenom,tel,mail);
+//    lp.ajouter("toto","Alice","062606060626","fdziosf");
+//    lp.ajouter("toto","albert","062606060626","fdziosf");
+//    lp.ajouter("toto","Banner","062606060626","fdziosf");
+//    lp.ajouter("toto","connor","062606060626","fdziosf");
+//    lp.afficherlistpersonne();
+//    lp.supprimer("toto","Alice");
+//    lp.afficherlistpersonne();
+//    lp.modifier("toto","albert","couillons","toto","0612346500","hypoter@hotmail.fr");
+//    lp.afficherlistpersonne();
+//    Personne *perso=lp.rechercherPersonne("Banner","tito");
+//    if(perso!=0)
+//    {
+//        std::cout<<perso->nom<<std::endl;
+//        std::cout<<perso->prenom<<std::endl;
+//        std::cout<<perso->mail<<std::endl;
+//        std::cout<<perso->tel<<std::endl;
+//        std::cout<<std::endl;
+//    }
+//
+//	return 0;
+//}
