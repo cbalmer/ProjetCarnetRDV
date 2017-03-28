@@ -5,15 +5,15 @@
 #include "ListeRDV.h"
 #include "Date.h"
 #include "Horaire.h"
-
+#include "ListeLien.h"
 class CarnetRDV
 {
 	public:
 		CarnetRDV();
 
-		bool creerRDV(std::string const& nom, std::string const& prenom, Date const& date, Horaire const& hDeb);
-		bool creerRDV(std::string const &nom, std :: string const &prenom , Date const &date,Horaire const & hDeb,Horaire const  &hFin);
-		bool supprimerRDV(std::string const &nom );
+		void creerRDV(std::string const& nom, std::string const& prenom, Date const& date, Horaire const& hDeb);
+		void creerRDV(std::string const &nom, std :: string const &prenom , Date const &date,Horaire const & hDeb,Horaire const  &hFin);
+		void supprimerRDV(std::string const &nom );
 		bool ajouterPersonneRDV(std::string const  &nomRDV, std::string const &NomPersonne, const std::string &PrenomPersonne);
 		bool supprimerPersonneRDV(std::string const  &nomRDV, std::string const &NomPersonne, const std::string &PrenomPersonne);
 		bool ajouterPersonne(std::string &prenom, std::string &nom,std::string  &tel, std::string &mail);
@@ -26,7 +26,7 @@ class CarnetRDV
 	private:
 		ListePersonne listp;
 		ListeRDV lrdv;
-		//ListeLien ll;
+		ListeLien ll;
 
 };
 
