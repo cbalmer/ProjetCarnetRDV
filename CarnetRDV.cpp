@@ -1,5 +1,29 @@
 #include "CarnetRDV.h"
 
+void CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb)
+{
+    ListeRDV.ajouter(nom)
+}
+
+void CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb,Horaire const  &hFin)
+{
+    ListeRDV.ajouter(nom,date,hDeb,hFin);
+}
+
+void CarnetRDV::supprimerRDV(std::string const & nom)
+{
+    ListeRDV.supprimer(nom);
+}
+
+bool CarnetRDV::EstDispo(std::string const &nom, std::string const &prenom,Date const &date,Horaire const & hDeb,Horaire const  &hFin)
+{
+    if(EstRDV(nom,prenom)==false)
+        return true;
+    else
+
+        return false;
+}
+
 
 bool CarnetRDV::ajouterPersonne( std::string &prenom,  std::string &nom,std::string  &tel, std::string   &mail)
 {
