@@ -31,7 +31,7 @@ ListePersonne CarnetRDV::getlesPersonneDuRDV(std::string const &nom)
 {
 
 }
-/*
+
 std::string CarnetRDV::AfficherRDV(std::string const &nom)
 {
     ListePersonne pRDV=getlesPersonneDuRDV(nom);
@@ -42,7 +42,7 @@ std::string CarnetRDV::AfficherRDV(std::string const &nom)
     chaine+=lerdv->hDeb.str()+"\n";
     chaine+=lerdv->hFin.str()+"\n";
     chaine+= pRDV.afficherlistpersonne();
-}*/
+}
 std::string CarnetRDV::afficherPersonne(std::string const &nom , std::string const &prenom)
 {
     std::string chaine="";
