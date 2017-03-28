@@ -2,6 +2,7 @@
 #define LISTERDV_H
 #include "Date.h"
 #include "Horaire.h"
+#include <iostream>
 
 struct RDV{
     std::string Nom;
@@ -22,6 +23,7 @@ class ListeRDV
         void modifierDate(const std::string & nom, const Date & d);
         void modifierHeureDebut(const std::string & nom, const Horaire & hDeb);
         void modifierHeureFin(const std::string & nom, const Horaire & hFin);
+        void afficher() const;
 
     private:
         RDV *_tete;
