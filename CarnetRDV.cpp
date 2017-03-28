@@ -2,7 +2,7 @@
 
 void CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb)
 {
-    ListeRDV.ajouter(nom)
+    ListeRDV.ajouter(nom,date,hDeb);
 }
 
 void CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb,Horaire const  &hFin)
