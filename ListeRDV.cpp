@@ -102,6 +102,26 @@ void ListeRDV::afficher() const
     }
 }
 
+void ListeRDV::modifierDate(const std::string & nom, const Date & d)
+{
+    RDV* rdv = recherche(nom);
+    if(rdv)
+    {
+        rdv->d = d;
+    }
+}
+
+void ListeRDV::modifierHeureDebut(const std::string & nom, const Horaire & hDeb)
+{
+
+}
+
+void ListeRDV::modifierHeureFin(const std::string & nom, const Horaire & hFin)
+{
+
+}
+
+
 //int main()
 //{
 //    ListeRDV test;

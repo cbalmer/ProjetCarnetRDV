@@ -13,15 +13,20 @@ struct Lien
 
 class ListeLien
 {
-	ListeLien();
-	~ListeLien();
 
-	void ajouter(Personne* p, RDV* r);
-	void supprimer(Personne* p, RDV* r);
-	void supprimer(RDV* r);
+	public:
+		ListeLien();
+		~ListeLien();
 
-	std::vector<Personne*> recherche(RDV* r);
-	std::vector<RDV*> recherche(Personne* r);
-};
+		void ajouter(Personne* p, RDV* r);
+		void supprimer(Personne* p, RDV* r);
+		void supprimer(RDV* r);
+
+		ListePersonne recherche(RDV* r);
+		ListeRDV recherche(Personne* r);
+
+	private:
+		Lien* _tete;
+};	
 
 #endif

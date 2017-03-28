@@ -20,6 +20,7 @@ class Horaire
 	public:
 		//heure actuelle
 		Horaire();
+		//heure manuelle
 		Horaire(int h, int m);
 
 		int heure() const;
