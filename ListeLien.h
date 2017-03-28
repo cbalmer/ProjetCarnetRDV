@@ -18,15 +18,15 @@ class ListeLien
 		ListeLien();
 		~ListeLien();
 
-		void ajouter(Personne* p, RDV* r);
-		void supprimer(Personne* p, RDV* r);
-		void supprimer(RDV* r);
+		bool ajouter(Personne* p, RDV* r);
+		bool supprimer(Personne* p, RDV* r);
+		bool supprimer(RDV* r);
 
 		ListePersonne recherche(RDV* r);
 		ListeRDV recherche(Personne* r);
 
 	private:
 		Lien* _tete;
-};	
+};
 
 #endif

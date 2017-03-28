@@ -21,7 +21,7 @@ class CarnetRDV
 		bool EstRDV(std::string const &nom,std::string const &prenom);
 		std::string AfficherRDV(std::string const &nom);
 		bool EstDispo(std::string const &nom, std::string const &prenom,Date const &date,Horaire const & hDeb,Horaire const  &hFin);
-		std::string afficherPersonne(std::string const &nom , std::string const &prenom);
+		std::string afficherPersonne(std::string  &nom , std::string  &prenom);
 		ListePersonne getlesPersonneDuRDV(std::string const &nom);
 	private:
 		ListePersonne listp;

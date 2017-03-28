@@ -171,6 +171,7 @@ void ListePersonne:: modifier(std::string &prenom, std::string &nom,std::string 
 Personne* ListePersonne::rechercherPersonne(std::string  &nom, std::string  &prenom)
  {
     Personne *curs=p;
+     nom[0]=std::toupper(nom[0]);
     while(curs!=0 )
     {
         if(curs->nom==nom && curs->prenom==prenom)

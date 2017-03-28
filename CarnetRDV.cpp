@@ -6,15 +6,11 @@
 
 bool CarnetRDV::EstDispo(std::string const &nom, std::string const &prenom,Date const &date,Horaire const & hDeb,Horaire const  &hFin)
 {
-    if(EstRDV(nom,prenom)==false)
-        return true;
-    else
-        return false;
+    return true;
 }
 
 bool CarnetRDV::EstRDV(std::string const &nom,std::string const &prenom)
 {
-    if(nom)
     return true;
 }
 
@@ -45,9 +41,9 @@ std::string CarnetRDV::AfficherRDV(std::string const &nom)
     chaine+=lerdv->d.str()+"\n";
     chaine+=lerdv->hDeb.str()+"\n";
     chaine+=lerdv->hFin.str()+"\n";
-    chaine+= pRDV.afficherlistpersonne();
+    chaine+= pRDV.afficherListpersonne();
 }
-std::string CarnetRDV::afficherPersonne(std::string const &nom , std::string const &prenom)
+std::string CarnetRDV::afficherPersonne(std::string  &nom , std::string  &prenom)
 {
     std::string chaine="";
     Personne *lapers=listp.rechercherPersonne(nom,prenom);
@@ -55,7 +51,7 @@ std::string CarnetRDV::afficherPersonne(std::string const &nom , std::string con
     chaine+=lapers->prenom+"\n";
     chaine+=lapers->mail+"\n";
     chaine+=lapers->tel+"\n";
-    chaine+= listp.afficherlistpersonne();
+    chaine+= listp.afficherListpersonne();
 }
 
 int main()
