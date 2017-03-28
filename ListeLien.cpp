@@ -105,20 +105,18 @@ bool ListeLien::ajouter(Personne *p, RDV *r)
         curs->suiv=lelien;
     }
 }
-
 ListeRDV ListeLien::recherche(Personne* p)
 {
 	ListeRDV lRDV;
 
-	if(_tete)
+	Lien* c = _tete;
+	while(c)
 	{
-		Lien* c = _tete;
-		while(c)
-		{
-			if(c->p == p)
-				lRDV.ajouter(c->r->nom, c->r->d, c->r->hDeb, c->r->hFin);
-		}
+		if(c->p == p)
+			lRDV.ajouter(c->r->nom, c->r->d, c->r->hDeb, c->r->hFin);
+		c = c->suiv;
 	}
+
 
 	return lRDV;
 }
