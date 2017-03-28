@@ -6,11 +6,15 @@
 
 bool CarnetRDV::EstDispo(std::string const &nom, std::string const &prenom,Date const &date,Horaire const & hDeb,Horaire const  &hFin)
 {
-    return true;
+    if(EstRDV(nom,prenom)==false)
+        return true;
+    else
+        return false;
 }
 
 bool CarnetRDV::EstRDV(std::string const &nom,std::string const &prenom)
 {
+    if(nom)
     return true;
 }
 
