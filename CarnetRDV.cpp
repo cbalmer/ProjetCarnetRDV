@@ -105,12 +105,26 @@ std::string CarnetRDV::AfficherRDV(std::string const &nom)
 
 bool CarnetRDV::EstDispo(std::string const &nom, std::string const &prenom,Date const &date,Horaire const & hDeb,Horaire const  &hFin)
 {
-    return true;
-}
+    if(EstRDV(nom,prenom)==false)
+        return true;
+    else
 
+        return false;
+}
 bool CarnetRDV::EstRDV(std::string const &nom,std::string const &prenom)
 {
-        return true;
+    Personne* pers=listp.rechercherPersonne(nom,prenom);
+    if(pers==nullptr)
+        return false;
+    else
+    {
+
+        ListeRDV lr=ll.recherche(pers);
+        if(lr._tete==nullptr)
+            return false;
+        else
+            return true;
+    }
 }
 
 bool CarnetRDV::supprimerPersonne(std::string const &nom,std::string const &prenom)
