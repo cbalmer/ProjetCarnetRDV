@@ -102,23 +102,31 @@ void ListeRDV::afficher() const
     }
 }
 
-void ListeRDV::modifierDate(const std::string & nom, const Date & d)
+void ListeRDV::modifierDate(const std::string & nom, const Date & da)
 {
-    RDV* rdv = recherche(nom);
-    if(rdv)
+    RDV *rdv = recherche(nom);
+    if(rdv != nullptr)
     {
-        rdv->d = d;
+        rdv->d = da;
     }
 }
 
 void ListeRDV::modifierHeureDebut(const std::string & nom, const Horaire & hDeb)
 {
-
+    RDV *rdv = recherche(nom);
+    if(rdv != nullptr)
+    {
+        rdv->hDeb = hDeb;
+    }
 }
 
 void ListeRDV::modifierHeureFin(const std::string & nom, const Horaire & hFin)
 {
-
+    RDV *rdv = recherche(nom);
+    if(rdv != nullptr)
+    {
+        rdv->hFin = hFin;
+    }
 }
 
 
@@ -129,7 +137,7 @@ void ListeRDV::modifierHeureFin(const std::string & nom, const Horaire & hFin)
 //    Horaire hD(10, 10);
 //    Horaire hF(11, 05);
 //    test.ajouter("essai", d, hD, hF);
-//   d = {22, 05, 2017};
+//    d = {22, 05, 2017};
 //    hD = {20, 12};
 //    hF = {21, 00};
 //    test.ajouter("essai 2", d, hD, hF);
