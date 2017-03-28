@@ -18,7 +18,7 @@ ListeLien::~ListeLien()
 }
 
 
-bool supprimer(Personne* p, RDV* r)
+bool  ListeLien::supprimer(Personne* p, RDV* r)
 {
 	if(_tete)
 	{
