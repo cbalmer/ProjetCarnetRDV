@@ -5,7 +5,7 @@ ListePersonne::ListePersonne():p{0}
 
 ListePersonne::ListePersonne(ListePersonne const& l): p{nullptr}
 {
-    Personne* c = p;
+    Personne* c = l.p;
     while(c)
     {
         ajouter(c->prenom, c->nom, c->tel, c->mail);

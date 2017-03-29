@@ -20,11 +20,11 @@ bool CarnetRDV::supprimerRDV(std::string const & nom)
 bool CarnetRDV::EstDispo(std::string  nom, std::string  prenom,Date const  &date,Horaire const& hDeb,Horaire  const& hFin)
 {
 	Personne *p=listp.rechercherPersonne(nom,prenom);
+
 	if(!ll.recherche(p,date,hDeb,hFin))
         return true;
     else
     {
-        std::cout << ll.recherche(p,date,hDeb,hFin)->Nom << std::endl;
         return false;
     }
 }
@@ -63,7 +63,7 @@ bool CarnetRDV::supprimerPersonneRDV(std::string nomRDV, std::string NomPersonne
     if(lrdv.recherche(nomRDV) != nullptr)
     {
         RDV *rdv = lrdv.recherche(nomRDV);
-        ListePersonne lPerso = ll.recherche(rdv);
+        ListePersonne lPerso(ll.recherche(rdv));
         if(lPerso.rechercherPersonne(NomPersonne, PrenomPersonne) == nullptr)
         {
             return false;
@@ -83,22 +83,21 @@ bool CarnetRDV::supprimerPersonneRDV(std::string nomRDV, std::string NomPersonne
 
 ListePersonne CarnetRDV::getlesPersonneDuRDV(std::string const &nom)
 {
-    ListePersonne lPerso;
     RDV *rdv = lrdv.recherche(nom);
     if(rdv == nullptr)
     {
-        return lPerso;
+        return ListePersonne();
     }
     else
     {
-        lPerso = ll.recherche(rdv);
-        return lPerso;
+        ListePersonne lPerso(ll.recherche(rdv));
+        return lPerso ;
     }
 }
 
 std::string CarnetRDV::AfficherRDV(std::string const &nom)
 {
-    ListePersonne pRDV=getlesPersonneDuRDV(nom);
+    ListePersonne pRDV(getlesPersonneDuRDV(nom));
     std::string chaine="";
     RDV *lerdv=lrdv.recherche(nom);
     if(!lerdv)
@@ -136,7 +135,7 @@ bool CarnetRDV::EstRDV(std::string &nom,std::string &prenom)
     else
     {
 
-        ListeRDV lr=ll.recherche(pers);
+        ListeRDV lr(ll.recherche(pers));
         if(lr._tete==nullptr)
             return false;
         else

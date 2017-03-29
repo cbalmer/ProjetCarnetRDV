@@ -20,6 +20,9 @@ class ListeRDV
     public:
         ListeRDV();
         ~ListeRDV();
+
+        ListeRDV(ListeRDV const&);
+
         void ajouter(const std::string & nom, const Date & d, const Horaire & hDeb, const Horaire & hFin);
         RDV* recherche(const std::string & nom);
         void supprimer(const std::string & nom);

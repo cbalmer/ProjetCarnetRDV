@@ -129,7 +129,7 @@ ListePersonne ListeLien::recherche(RDV *r)
 
     while(curs != 0)
     {
-        std::cout << _tete->r << "\n";
+
         if(curs->r==r)
         {
             lp.ajouter(curs->p->prenom,curs->p->nom,curs->p->tel,curs->p->mail);
@@ -137,17 +137,32 @@ ListePersonne ListeLien::recherche(RDV *r)
         }
 		curs=curs->suiv;
     }
+
     return lp;
 }
 
 RDV* ListeLien::recherche(Personne* p, Date   const&d, Horaire  const&hd, Horaire  const&hf)
 {
-	RDV* rdv;
     Lien *curs = _tete;
-    while(curs!=0 && (curs->p!=p || curs->r->d!=d || !(curs->r->hDeb>hd && curs->r->hFin>hf) || !(curs->r->hDeb>= hd && curs->r->hDeb<=hf)||(curs->r->hFin<= hd && curs->r->hFin<=hf)))
+    while
+    (curs!=0 &&
+        (
+            curs->p!=p ||
+            curs->r->d!=d ||
+            (
+                !(curs->r->hDeb < hd && curs->r->hFin > hf) &&
+                !(curs->r->hDeb > hd && curs->r->hDeb < hf)&&
+                !(curs->r->hFin > hd && curs->r->hFin < hf)
+            )
+        )
+    )
     {
 
 		curs=curs->suiv;
     }
-    return rdv;
+
+    if(curs)
+        return curs->r;
+
+    return nullptr;
 }
