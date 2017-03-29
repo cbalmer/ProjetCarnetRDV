@@ -24,6 +24,7 @@ class ListeLien
 
 		ListePersonne recherche(RDV* r);
 		ListeRDV recherche(Personne* p);
+		RDV* recherche(Personne* p, Date* d, Horaire* hd, Horaire* hf);
 
 	private:
 		Lien* _tete;
