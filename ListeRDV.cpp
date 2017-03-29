@@ -12,7 +12,15 @@ ListeRDV::~ListeRDV()
         _tete=c;
     }
 }
-
+ListeRDV::ListeRDV(const ListeRDV &rdv)
+{
+    RDV *curs = rdv._tete;
+    while(curs!=0)
+    {
+        ajouter(curs->Nom,curs->d,curs->hDeb,curs->hFin);
+        curs=curs->suiv;
+    }
+}
 void ListeRDV::ajouter( const std::string & nom, const Date & d, const Horaire & hDeb, const Horaire & hFin)
 {
     RDV *c = _tete;
