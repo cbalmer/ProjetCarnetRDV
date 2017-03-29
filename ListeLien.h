@@ -23,7 +23,7 @@ class ListeLien
 		bool supprimer(RDV* r);
 
 		ListePersonne recherche(RDV* r);
-		ListeRDV recherche(Personne* r);
+		ListeRDV recherche(Personne* p);
 
 	private:
 		Lien* _tete;

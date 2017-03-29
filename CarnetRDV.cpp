@@ -1,21 +1,23 @@
 #include "CarnetRDV.h"
 
-void CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb)
+bool CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb)
 {
-    ListeRDV.ajouter(nom,date,hDeb);
+    Horaire hFin = hDeb;
+    hFin.decaleHeure(1);
+    lrdv.ajouter(nom,date,hDeb,hFin);
 }
 
-void CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb,Horaire const  &hFin)
+bool CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb,Horaire const  &hFin)
 {
-    ListeRDV.ajouter(nom,date,hDeb,hFin);
+    lrdv.ajouter(nom,date,hDeb,hFin);
 }
 
-void CarnetRDV::supprimerRDV(std::string const & nom)
+bool CarnetRDV::supprimerRDV(std::string const & nom)
 {
-    ListeRDV.supprimer(nom);
+    lrdv.supprimer(nom);
 }
 
-bool CarnetRDV::EstDispo(std::string const &nom, std::string const &prenom,Date const &date,Horaire const & hDeb,Horaire const  &hFin)
+bool CarnetRDV::EstDispo(std::string  &nom, std::string  &prenom,Date  &date,Horaire & hDeb,Horaire  &hFin)
 {
     if(EstRDV(nom,prenom)==false)
         return true;
@@ -25,13 +27,13 @@ bool CarnetRDV::EstDispo(std::string const &nom, std::string const &prenom,Date 
 }
 
 
-bool CarnetRDV::ajouterPersonne( std::string &prenom,  std::string &nom,std::string  &tel, std::string   &mail)
+bool CarnetRDV::ajouterPersonne( std::string prenom,  std::string nom,std::string  tel, std::string   mail)
 {
 	listp.ajouter(prenom,nom,tel,mail);
 	return 1;
 }
 
-bool CarnetRDV::ajouterPersonneRDV(std::string const  &nomRDV, std::string const &NomPersonne, const std::string &PrenomPersonne)
+bool CarnetRDV::ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne)
 {
     if(listp.estDouble(NomPersonne, PrenomPersonne))
     {
@@ -53,7 +55,7 @@ bool CarnetRDV::ajouterPersonneRDV(std::string const  &nomRDV, std::string const
     }
 }
 
-bool CarnetRDV::supprimerPersonneRDV(std::string const  &nomRDV, std::string const &NomPersonne, const std::string &PrenomPersonne)
+bool CarnetRDV::supprimerPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne)
 {
     if(lrdv.recherche(nomRDV) != nullptr)
     {
@@ -78,7 +80,7 @@ bool CarnetRDV::supprimerPersonneRDV(std::string const  &nomRDV, std::string con
 
 ListePersonne CarnetRDV::getlesPersonneDuRDV(std::string const &nom)
 {
-    ListePersonne lPerso();
+    ListePersonne lPerso;
     RDV *rdv = lrdv.recherche(nom);
     if(rdv == nullptr)
     {
@@ -96,6 +98,8 @@ std::string CarnetRDV::AfficherRDV(std::string const &nom)
     ListePersonne pRDV=getlesPersonneDuRDV(nom);
     std::string chaine="";
     RDV *lerdv=lrdv.recherche(nom);
+    if(!lerdv)
+        return "";
     chaine=chaine+lerdv->Nom+"\n";
     chaine+=lerdv->d.str()+"\n";
     chaine+=lerdv->hDeb.str()+"\n";
@@ -103,15 +107,23 @@ std::string CarnetRDV::AfficherRDV(std::string const &nom)
     chaine+= pRDV.afficherListpersonne();
 }
 
-bool CarnetRDV::EstDispo(std::string const &nom, std::string const &prenom,Date const &date,Horaire const & hDeb,Horaire const  &hFin)
+std::string CarnetRDV::afficherPersonne(std::string  nom , std::string  prenom)
 {
-    if(EstRDV(nom,prenom)==false)
-        return true;
-    else
+    Personne* perso = listp.rechercherPersonne(nom,prenom);
+    if(!perso)
+        return "";
 
-        return false;
+    std::string str;
+    str = "\nNom: " + perso->nom;
+    str += "\nPrénom: " + perso->prenom;
+    str += "\nTel: " + perso->tel;
+    str += "\nmail: " + perso->mail;
+
+    return str;
 }
-bool CarnetRDV::EstRDV(std::string const &nom,std::string const &prenom)
+
+
+bool CarnetRDV::EstRDV(std::string &nom,std::string &prenom)
 {
     Personne* pers=listp.rechercherPersonne(nom,prenom);
     if(pers==nullptr)
@@ -127,14 +139,21 @@ bool CarnetRDV::EstRDV(std::string const &nom,std::string const &prenom)
     }
 }
 
-bool CarnetRDV::supprimerPersonne(std::string const &nom,std::string const &prenom)
+bool CarnetRDV::supprimerPersonne(std::string nom,std::string prenom)
 {
     if(EstRDV(nom,prenom)==false)
         return true;
     else
         return false;
 }
-int main()
+
+std::string CarnetRDV::afficherPersonnes() const
 {
-    return 0;
+    return listp.afficherListpersonne();
 }
+
+void CarnetRDV::modifierPersonne(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail)
+{
+    listp.modifier(prenom,nom,nouveaunom,nouveauprenom,tel,mail);
+}
+

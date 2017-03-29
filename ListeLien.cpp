@@ -93,7 +93,7 @@ bool ListeLien::ajouter(Personne *p, RDV *r)
     lelien->r=r;
     if(_tete==0)
     {
-        _lien=lelien;
+        _tete=lelien;
     }
     else
     {
@@ -113,17 +113,17 @@ ListeRDV ListeLien::recherche(Personne* p)
 	while(c)
 	{
 		if(c->p == p)
-			lRDV.ajouter(c->r->nom, c->r->d, c->r->hDeb, c->r->hFin);
+			lRDV.ajouter(c->r->Nom, c->r->d, c->r->hDeb, c->r->hFin);
 		c = c->suiv;
 	}
 
 
 	return lRDV;
 }
-ListePersonne* ListeLien::recherche(RDV *r)
+ListePersonne ListeLien::recherche(RDV *r)
 {
-    ListePersonne lp();
-    lien *curs=_tete;
+    ListePersonne lp;
+    Lien *curs = _tete;
     while(_tete!=0)
     {
         if(curs->r==r)

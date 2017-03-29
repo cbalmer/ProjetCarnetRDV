@@ -91,15 +91,18 @@ void ListeRDV::supprimer(const std::string & nom)
     }
 }
 
-void ListeRDV::afficher() const
+std::string ListeRDV::afficher() const
 {
+    std::ostringstream oss;
+
     RDV *c = _tete;
     while(c != nullptr)
     {
-        std::cout << c->Nom << " " << c->d.jour() << " " << c->d.mois() << " " << c->d.annee() << " " << c->hDeb.heure() << " " << c->hDeb.minute() << " " << c->hFin.heure() << " " << c->hFin.minute();
-        std::cout << std::endl;
+        oss << c->Nom << ": " << c->d.str() << " de " << c->hDeb.str() << " à " << c->hFin.str() << std::endl;
         c = c->suiv;
     }
+
+    return oss.str();
 }
 
 void ListeRDV::modifierDate(const std::string & nom, const Date & da)

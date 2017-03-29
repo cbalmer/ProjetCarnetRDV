@@ -1,17 +1,16 @@
 #include <iostream>
-#include "Date.h"
+
+#include "CLI.h"
+#include "CarnetRDV.h"
 
 int main()
 {
-    Date date;
+    CarnetRDV* carnet = new CarnetRDV();
 
-    std::cout << date.str() << std::endl;
-    date++;
-    std::cout << date.str() << std::endl;
-    ++date;
-	std::cout << date.str() << std::endl;
-	date--;
-	--date;
-	std::cout << date.str() << std::endl;
+    carnet->ajouterPersonne("Camille","Balmer","0987675745","caca@caca.fr");
+    carnet->ajouterPersonne("Nathan","Baumann","0330492834","pipi@caca.fr");
+
+    cli(carnet);
+
     return 0;
 }

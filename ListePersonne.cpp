@@ -19,6 +19,7 @@ ListePersonne::~ListePersonne()
 bool ListePersonne::estDouble(std::string  &nom, std::string  &prenom)
 {
     nom[0]=std::toupper(nom[0]);
+    prenom[0]=std::toupper(prenom[0]);
     bool estdouble=false;
     Personne *curs=p;
     while(curs!=0 && !estdouble)
@@ -31,10 +32,11 @@ bool ListePersonne::estDouble(std::string  &nom, std::string  &prenom)
 }
 
 
-void ListePersonne::ajouter(std::string &prenom, std::string &nom,std::string &tel, std::string &mail)
+void ListePersonne::ajouter(std::string prenom, std::string nom,std::string tel, std::string mail)
 {
     Personne *pe=new Personne;
     nom[0]=std::toupper(nom[0]);
+    prenom[0]=std::toupper(prenom[0]);
     pe->nom=nom;
     pe->prenom=prenom;
     pe->tel=tel;
@@ -104,9 +106,10 @@ void ListePersonne::ajouter(std::string &prenom, std::string &nom,std::string &t
 
 
 
-void ListePersonne::supprimer(std::string &prenom, std::string &nom)
+void ListePersonne::supprimer(std::string prenom, std::string nom)
 {
     nom[0]=std::toupper(nom[0]);
+    prenom[0]=std::toupper(prenom[0]);
     if(p!=0)
     {
         if(p->nom ==nom && p->prenom==prenom)
@@ -145,15 +148,18 @@ void ListePersonne::afficherlistpersonne()
          std::cout<<curs->prenom<<std::endl;
           std::cout<<curs->mail<<std::endl;
            std::cout<<curs->tel<<std::endl;
-           std::cout<<std::endl;
+           std::cout<<std::endl << std::endl;
         curs=curs->suiv;
     }
     std::cout<<"----------------------------------------------------"<<std::endl;
 }
-void ListePersonne:: modifier(std::string &prenom, std::string &nom,std::string &nouveaunom,std::string &nouveauprenom,std::string &tel, std::string &mail)
+void ListePersonne:: modifier(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail)
 {
     nom[0]=std::toupper(nom[0]);
+    prenom[0]=std::toupper(prenom[0]);
     nouveaunom[0]=std::toupper(nouveaunom[0]);
+    nouveauprenom[0]=std::toupper(nouveauprenom[0]);
+
     bool trouver=false;
     Personne *curs=p;
     while(curs!=0 && !trouver)
@@ -168,10 +174,11 @@ void ListePersonne:: modifier(std::string &prenom, std::string &nom,std::string 
     }
 }
 
-Personne* ListePersonne::rechercherPersonne(std::string  &nom, std::string  &prenom)
+Personne* ListePersonne::rechercherPersonne(std::string  nom, std::string  prenom)
  {
     Personne *curs=p;
      nom[0]=std::toupper(nom[0]);
+     prenom[0]=std::toupper(prenom[0]);
     while(curs!=0 )
     {
         if(curs->nom==nom && curs->prenom==prenom)
@@ -182,7 +189,7 @@ Personne* ListePersonne::rechercherPersonne(std::string  &nom, std::string  &pre
     }
     return curs;
  }
- std::string ListePersonne::afficherListpersonne()
+ std::string ListePersonne::afficherListpersonne() const
 {
     std::string chaine="";
     Personne *curs=p;
@@ -191,7 +198,7 @@ Personne* ListePersonne::rechercherPersonne(std::string  &nom, std::string  &pre
         chaine+=curs->nom+"\n";
         chaine+=curs->prenom+"\n";
         chaine+=curs->tel+"\n";
-        chaine+=curs->mail+"\n";
+        chaine+=curs->mail+"\n\n";
         curs=curs->suiv;
     }
     return chaine;
@@ -211,15 +218,6 @@ Personne* ListePersonne::rechercherPersonne(std::string  &nom, std::string  &pre
 //    lp.afficherlistpersonne();
 //    lp.modifier("toto","albert","couillons","toto","0612346500","hypoter@hotmail.fr");
 //    lp.afficherlistpersonne();
-//    Personne *perso=lp.rechercherPersonne("Banner","tito");
-//    if(perso!=0)
-//    {
-//        std::cout<<perso->nom<<std::endl;
-//        std::cout<<perso->prenom<<std::endl;
-//        std::cout<<perso->mail<<std::endl;
-//        std::cout<<perso->tel<<std::endl;
-//        std::cout<<std::endl;
-//    }
 //
 //	return 0;
 //}

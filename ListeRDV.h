@@ -4,6 +4,8 @@
 #include "Horaire.h"
 #include <iostream>
 
+class CarnetRDV;
+
 struct RDV{
     std::string Nom;
     Date d;
@@ -23,10 +25,12 @@ class ListeRDV
         void modifierDate(const std::string & nom, const Date & d);
         void modifierHeureDebut(const std::string & nom, const Horaire & hDeb);
         void modifierHeureFin(const std::string & nom, const Horaire & hFin);
-        void afficher() const;
+        std::string afficher() const;
 
     private:
         RDV *_tete;
+
+    friend CarnetRDV;
 };
 
 #endif // LISTERDV_H
