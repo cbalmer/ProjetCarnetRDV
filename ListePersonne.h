@@ -16,6 +16,7 @@ class ListePersonne
 {
     public:
         ListePersonne();
+        ListePersonne(ListePersonne const& l);
         ~ListePersonne();
         //    ListePersonne(Personne &p); vraiment utile de faire ce constructeur ?
         void ajouter(std::string prenom, std::string nom,std::string tel, std::string mail);
