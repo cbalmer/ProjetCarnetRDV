@@ -64,11 +64,11 @@ void menuPersonne(std::string nom, std::string prenom, CarnetRDV* carnet)
                 break;
 
             case '2':
+                {
                     std::cout<<"Voulez vous vraiment supprimer cette personne ? o/n"<<std::endl;
-                    std::string str:
+                    std::string str;
                     std::cin >> str;
-
-
+                }
                 break;
 
             case 'r':

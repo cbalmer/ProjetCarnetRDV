@@ -16,7 +16,12 @@ ListeRDV::~ListeRDV()
 void ListeRDV::ajouter( const std::string & nom, const Date & d, const Horaire & hDeb, const Horaire & hFin)
 {
     RDV *c = _tete;
-    RDV *nvRDV = new RDV{nom, d, hDeb, hFin};
+    RDV *nvRDV = new RDV;
+    nvRDV->Nom = nom;
+    nvRDV->d = d;
+    nvRDV->hDeb = hDeb;
+    nvRDV->hFin = hFin;
+
     if(_tete != nullptr)
     {
         while(c->suiv != nullptr)

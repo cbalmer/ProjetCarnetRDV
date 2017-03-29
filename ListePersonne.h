@@ -6,6 +6,8 @@
 
 
 struct Personne{
+    Personne():suiv{nullptr}{}
+
   std::string prenom,nom,tel,mail;
   Personne *suiv;
 };

@@ -22,7 +22,7 @@ Date::Date(int j, int m, int a)
 		on modifie certains champs de tm afin de les faire correspondre à la date voulue
 	*/
 
-	_time = mktime(d);//on récupère la date voulue sous forme de secondes écoulés depuis le 1er janvier 1970 
+	_time = mktime(d);//on récupère la date voulue sous forme de secondes écoulés depuis le 1er janvier 1970
 }
 
 std::string Date::jourSemaine() const
@@ -34,8 +34,8 @@ std::string Date::jourSemaine() const
 
 	std::string ret;
 	iss >> ret;/*récupération du jour de la semaine via un flux sur chaine de caractères
-	
-	ici on utilise un flux 
+
+	ici on utilise un flux
 	*/
 	return ret;
 }
@@ -117,5 +117,16 @@ Date& Date::operator-=(int c)
 {
 	_time -= 24*60*60*c;
 	return *this;
+}
+
+
+bool Date::operator!=(Date const& d)const
+{
+    return !((*this)==d);
+}
+
+bool Date::operator==(Date const& d)const
+{
+    return _time == d._time;
 }
 

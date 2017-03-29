@@ -36,12 +36,12 @@ class Horaire
 		//renvoie l'horaire sous forme d'une chaine de type "HHhMM";
 		std::string str() const;
 
-		bool operator==(Horaire const& h);
-		bool operator<(Horaire const& h);
-		bool operator>(Horaire const& h);
-		bool operator<=(Horaire const& h);
-		bool operator>=(Horaire const& h);
-		bool operator!=(Horaire const& h);
+		bool operator==(Horaire const& h) const;
+		bool operator<(Horaire const& h)const;
+		bool operator>(Horaire const& h)const;
+		bool operator<=(Horaire const& h)const;
+		bool operator>=(Horaire const& h)const;
+		bool operator!=(Horaire const& h)const;
 
 
 	private:

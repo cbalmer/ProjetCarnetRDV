@@ -6,6 +6,7 @@
 
 struct Lien
 {
+    Lien():suiv{nullptr}{}
 	Personne* p;
 	RDV* r;
 	Lien* suiv;
@@ -24,7 +25,7 @@ class ListeLien
 
 		ListePersonne recherche(RDV* r);
 		ListeRDV recherche(Personne* p);
-		RDV* recherche(Personne* p, Date* d, Horaire* hd, Horaire* hf);
+		RDV* recherche(Personne* p, Date const &d, Horaire   const &hd, Horaire  const &hf);
 
 	private:
 		Lien* _tete;

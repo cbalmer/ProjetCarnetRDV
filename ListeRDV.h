@@ -7,6 +7,7 @@
 class CarnetRDV;
 
 struct RDV{
+    RDV():suiv{nullptr}{}
     std::string Nom;
     Date d;
     Horaire hDeb;

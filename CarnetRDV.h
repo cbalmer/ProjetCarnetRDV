@@ -19,7 +19,7 @@ class CarnetRDV
 		bool supprimerPersonne(std::string nom,std::string prenom);
 		bool EstRDV(std::string  &nom,std::string &prenom);
 		std::string AfficherRDV(std::string const &nom);
-		bool EstDispo(std::string  &nom, std::string  &prenom,Date  &date,Horaire & hDeb,Horaire  &hFin);
+		bool EstDispo(std::string  nom, std::string  prenom,Date  const&date,Horaire const& hDeb,Horaire  const&hFin);
 		std::string afficherPersonne(std::string  nom , std::string  prenom);
 		ListePersonne getlesPersonneDuRDV(std::string const &nom);
 		std::string afficherPersonnes() const;

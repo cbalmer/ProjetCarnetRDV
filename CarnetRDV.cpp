@@ -17,9 +17,16 @@ bool CarnetRDV::supprimerRDV(std::string const & nom)
     lrdv.supprimer(nom);
 }
 
-bool CarnetRDV::EstDispo(std::string  &nom, std::string  &prenom,Date  &date,Horaire & hDeb,Horaire  &hFin)
+bool CarnetRDV::EstDispo(std::string  nom, std::string  prenom,Date const  &date,Horaire const& hDeb,Horaire  const& hFin)
 {
-	
+	Personne *p=listp.rechercherPersonne(nom,prenom);
+	if(!ll.recherche(p,date,hDeb,hFin))
+        return true;
+    else
+    {
+        std::cout << ll.recherche(p,date,hDeb,hFin)->Nom << std::endl;
+        return false;
+    }
 }
 
 
@@ -101,6 +108,8 @@ std::string CarnetRDV::AfficherRDV(std::string const &nom)
     chaine+=lerdv->hDeb.str()+"\n";
     chaine+=lerdv->hFin.str()+"\n";
     chaine+= pRDV.afficherListpersonne();
+
+    return chaine;
 }
 
 std::string CarnetRDV::afficherPersonne(std::string  nom , std::string  prenom)

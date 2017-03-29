@@ -29,6 +29,9 @@ class Date
 		Date& operator+=(int c);
 		Date& operator-=(int c);
 
+		bool operator!=(Date const& d)const;
+		bool operator==(Date const& d)const;
+
 	private:
 		time_t _time;
 };

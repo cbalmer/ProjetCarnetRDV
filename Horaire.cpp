@@ -64,32 +64,32 @@ std::string Horaire::str() const
 	return oss.str();
 }
 
-bool Horaire::operator==(Horaire const& h)
+bool Horaire::operator==(Horaire const& h) const
 {
 	return _heure == h._heure && _minute == h._minute;
 }
 
-bool Horaire::operator<(Horaire const& h)
+bool Horaire::operator<(Horaire const& h) const
 {
 	return _heure == h._heure? _minute < h._minute : _heure < h._heure;
 }
 
-bool Horaire::operator>(Horaire const& h)
+bool Horaire::operator>(Horaire const& h) const
 {
 	return _heure == h._heure? _minute > h._minute : _heure > h._heure;
 }
 
-bool Horaire::operator<=(Horaire const& h)
+bool Horaire::operator<=(Horaire const& h) const
 {
 	return *this < h || *this == h;
 }
 
-bool Horaire::operator>=(Horaire const& h)
+bool Horaire::operator>=(Horaire const& h) const
 {
 	return *this > h || *this == h;
 }
 
-bool Horaire::operator!=(Horaire const& h)
+bool Horaire::operator!=(Horaire const& h) const
 {
 	return !(*this == h);
 }
