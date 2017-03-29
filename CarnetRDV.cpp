@@ -19,11 +19,7 @@ bool CarnetRDV::supprimerRDV(std::string const & nom)
 
 bool CarnetRDV::EstDispo(std::string  &nom, std::string  &prenom,Date  &date,Horaire & hDeb,Horaire  &hFin)
 {
-    if(EstRDV(nom,prenom)==false)
-        return true;
-    else
-
-        return false;
+	
 }
 
 

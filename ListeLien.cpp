@@ -120,17 +120,31 @@ ListeRDV ListeLien::recherche(Personne* p)
 
 	return lRDV;
 }
+
 ListePersonne ListeLien::recherche(RDV *r)
 {
     ListePersonne lp;
     Lien *curs = _tete;
-    while(_tete!=0)
+    while(curs!=0)
     {
         if(curs->r==r)
         {
             lp.ajouter(curs->p->prenom,curs->p->nom,curs->p->tel,curs->p->mail);
-            curs=curs->suiv;
+            
         }
+		curs=curs->suiv;
     }
     return lp;
+}
+
+RDV* ListeLien::recherche(Personne* p, Date* d, Horaire* hd, Horaire* hf)
+{
+	RDV* rdv;
+    Lien *curs = _tete;
+    while(curs!=0 && (curs->p!=p || curs->r->d!=d || !(curs->r->hDeb>hd && curs->r->hFin>hf) || !(curs->r->hDeb>= hd && curs->r->hDeb<=hf)||(curs->r->hFin<= hd && curs->r->hFin<=hf)))
+    {
+    	
+		curs=curs->suiv;
+    }
+    return rdv;
 }
