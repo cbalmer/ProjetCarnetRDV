@@ -1,21 +1,36 @@
 #include "CarnetRDV.h"
 
+MYSQL CarnetRDV::mysql;
+
+bool CarnetRDV::initialisation()
+{
+    mysql_init(&mysql);
+    mysql_options(&mysql,MYSQL_READ_DEFAULT_GROUP,"option");
+
+    if(!mysql_real_connect(&mysql,"mysql-laverdure.alwaysdata.net","laverdure_rdv","1234567890","laverdure_carnetrdv",0,NULL,0))
+        return false;
+
+    return true;
+}
+
+
 bool CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb)
 {
     Horaire hFin = hDeb;
     hFin.decaleHeure(1);
-    lrdv.ajouter(nom,date,hDeb,hFin);
+    creerRDV(nom,date,hDeb,hFin);
 }
 
 
 bool CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb,Horaire const  &hFin)
 {
+    ///insert bdd
     lrdv.ajouter(nom,date,hDeb,hFin);
 }
 
 bool CarnetRDV::supprimerRDV(std::string const & nom)
 {
-
+    ///insert bdd
     ll.supprimer(lrdv.recherche(nom));
     lrdv.supprimer(nom);
 }
@@ -35,12 +50,14 @@ bool CarnetRDV::EstDispo(std::string  nom, std::string  prenom,Date const  &date
 
 bool CarnetRDV::ajouterPersonne( std::string prenom,  std::string nom,std::string  tel, std::string   mail)
 {
+    ///insert bdd
 	listp.ajouter(prenom,nom,tel,mail);
 	return 1;
 }
 
 int CarnetRDV::ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne)
 {
+    ///insert bdd
     if(listp.estDouble(NomPersonne, PrenomPersonne))
     {
         if(lrdv.recherche(nomRDV) == nullptr)
@@ -74,6 +91,7 @@ int CarnetRDV::ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, s
 
 bool CarnetRDV::supprimerPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne)
 {
+    ///insert bdd
     if(lrdv.recherche(nomRDV) != nullptr)
     {
         RDV *rdv = lrdv.recherche(nomRDV);
@@ -159,6 +177,7 @@ bool CarnetRDV::EstRDV(std::string &nom,std::string &prenom)
 
 bool CarnetRDV::supprimerPersonne(std::string prenom,std::string nom)
 {
+    ///insert bdd
     if(EstRDV(nom,prenom)==false)
     {
         listp.supprimer(prenom,nom);
@@ -175,6 +194,7 @@ std::string CarnetRDV::afficherPersonnes() const
 
 void CarnetRDV::modifierPersonne(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail)
 {
+    ///insert bdd
     listp.modifier(prenom,nom,nouveaunom,nouveauprenom,tel,mail);
 }
 std::string CarnetRDV::AfficherRDVs_dune_Date(Date const &d)

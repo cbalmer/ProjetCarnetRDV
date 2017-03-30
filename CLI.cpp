@@ -77,9 +77,7 @@ void menuPersonne(std::string nom, std::string prenom, CarnetRDV* carnet)
                     while(str != "o" && str !="O" && str != "N" && str !="n");
                     if(str=="o" || str=="0")
                     {
-                         bool erreur;
-                         erreur=carnet->supprimerPersonne(prenom,nom);
-                         if(erreur)
+                         if(carnet->supprimerPersonne(prenom,nom))
                          {
                             std::cout << "Erreur la personne doit tout d'abord ne plus avoir de RDV"<<std::endl;
                          }

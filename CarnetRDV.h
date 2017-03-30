@@ -1,6 +1,9 @@
 #ifndef CarnetRDV_h
 #define CarnetRDV_h
+
 #include <string>
+#include <MYSQL/mysql.h>
+
 #include "ListePersonne.h"
 #include "ListeRDV.h"
 #include "ListeLien.h"
@@ -30,6 +33,10 @@ class CarnetRDV
 		ListeRDV lrdv;
 		ListeLien ll;
 
+
+    public:static bool initialisation();
+    public:bool import();
+    private:static MYSQL mysql;
 };
 
 #endif
