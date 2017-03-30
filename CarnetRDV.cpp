@@ -14,6 +14,8 @@ bool CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const
 
 bool CarnetRDV::supprimerRDV(std::string const & nom)
 {
+
+    ll.supprimer(lrdv.recherche(nom));
     lrdv.supprimer(nom);
 }
 
