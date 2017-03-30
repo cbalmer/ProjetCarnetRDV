@@ -13,7 +13,7 @@ class CarnetRDV
 		bool creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb);
 		bool creerRDV(std::string const &nom, Date const &date,Horaire const & hDeb,Horaire const  &hFin);
 		bool supprimerRDV(std::string const &nom );
-		bool ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne);
+		int ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne);
 		bool supprimerPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne);
 		bool ajouterPersonne(std::string prenom, std::string nom,std::string  tel, std::string mail);
 		bool supprimerPersonne(std::string nom,std::string prenom);

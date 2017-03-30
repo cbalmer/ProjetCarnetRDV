@@ -36,25 +36,36 @@ bool CarnetRDV::ajouterPersonne( std::string prenom,  std::string nom,std::strin
 	return 1;
 }
 
-bool CarnetRDV::ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne)
+int CarnetRDV::ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne)
 {
     if(listp.estDouble(NomPersonne, PrenomPersonne))
     {
         if(lrdv.recherche(nomRDV) == nullptr)
         {
-            return false;
+            return 1;
         }
         else
         {
             RDV *rdv = lrdv.recherche(nomRDV);
             Personne *pers = listp.rechercherPersonne(NomPersonne, PrenomPersonne);
-            ll.ajouter(pers, rdv);
-            return true;
+            if(pers==nullptr)
+                return 2;
+            if(EstDispo(pers->nom,pers->prenom,rdv->d,rdv->hDeb,rdv->hFin))
+            {
+                ll.ajouter(pers, rdv);
+                return 0;
+            }
+             else
+             {
+                 return 3;
+             }
+
+
         }
     }
     else
     {
-        return false;
+        return 2;
     }
 }
 
