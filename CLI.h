@@ -1,4 +1,4 @@
-#ifdef WIN32
+#ifdef _WIN32
     #define CLEAR() system("cls")
 #else
     #define CLEAR() system("clear")

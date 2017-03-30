@@ -23,8 +23,8 @@ class CarnetRDV
 		std::string afficherPersonne(std::string  nom , std::string  prenom);
 		ListePersonne getlesPersonneDuRDV(std::string const &nom);
 		std::string afficherPersonnes() const;
-
 		void modifierPersonne(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail);
+		std::string AfficherRDVs_dune_Date(Date const &Date);
 	private:
 		ListePersonne listp;
 		ListeRDV lrdv;

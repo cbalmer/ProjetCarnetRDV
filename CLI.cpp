@@ -5,6 +5,7 @@ void pause()
 {
     std::cout << "Appuyez sur ENTRÉE pour continuer...";
     std::string s;
+    std::cin.ignore();
     std::getline(std::cin,s);
 }
 
@@ -65,9 +66,25 @@ void menuPersonne(std::string nom, std::string prenom, CarnetRDV* carnet)
 
             case '2':
                 {
-                    std::cout<<"Voulez vous vraiment supprimer cette personne ? o/n"<<std::endl;
                     std::string str;
-                    std::cin >> str;
+                    do
+                    {
+                        std::cout<<"Voulez vous vraiment supprimer cette personne ? o/n"<<std::endl;
+                        std::cout <<str;
+                        std::cin >> str;
+                    }
+                    while(str != "o" && str !="O" && str != "N" && str !="n");
+                    if(str=="o" || str=="0")
+                    {
+                         bool erreur;
+                         erreur=carnet->supprimerPersonne(prenom,nom);
+                         if(erreur)
+                         {
+                            std::cout << "Erreur la personne doit tout d'abord ne plus avoir de RDV"<<std::endl;
+                         }
+                    }
+                    boucle=false;
+                    CLEAR();
                 }
                 break;
 
@@ -108,9 +125,6 @@ void gestionPersonnes(CarnetRDV* carnet)
                 pause();
                 CLEAR();
             break;
-
-
-
 
             case '2':
             {
@@ -181,8 +195,77 @@ void gestionPersonnes(CarnetRDV* carnet)
 	}while(boucle);
 }
 
+
+void menuRDV(std::string nomRDV, CarnetRDV *carnet)
+{
+
+}
+
 void gestionRDV(CarnetRDV* carnet)
 {
+     bool boucle;
+    CLEAR();
+	do
+	{
+        std::cout << "==== Gestion RDV ====\n";
+        std::cout << "1. Affichage de tout les RDV d'une date\n";
+        std::cout << "2. Recherche RDV\n";
+        std::cout << "3. Ajouter RDV\n";
+        std::cout << "R. Retour\n";
+
+		boucle = true;
+		char choix = entrerChar();
+
+		switch(choix)
+		{
+		    case'1':
+		    {
+                std::cout << "Saisir une Date jj/mm/aaaa" << std::endl;
+                int j,m,a;
+                char c;
+                std::cin >>j>>c>>m>>c>>a;
+                std::cout<< carnet->AfficherRDVs_dune_Date(Date(j,m,a));
+                pause();
+
+                CLEAR();
+		    }
+            break;
+
+            case'2':
+            {
+                 std::cout << "Saisir le nom du RDV" << std::endl;
+
+            }
+            break;
+            case'3':
+                {
+                    std::string nomRDV;
+                    std::cout << "Saisir le Nom du RDV" << std::endl;
+                    std::cin >>nomRDV;
+                    std::cout << "Saisir une Date jj/mm/aaaa" << std::endl;
+                    int j,m,a,hdebut,hfin,mdebut,mfin;
+                    char c;
+                    std::cin >>j>>c>>m>>c>>a;
+                    std::cout << "Saisir Heure debut hh:mm" << std::endl;
+                    std::cin >> hdebut>>c>>mdebut;
+    //               std::cout << "Saisir Heure fin hh:mm" << std::endl;
+    //               std::cin >> hfin>>c>>mfin;
+                    carnet->creerRDV(nomRDV,Date(j,m,a),Horaire(hdebut,mdebut),Horaire(hdebut+1,mdebut+1));
+                }
+            break;
+
+
+            case 'r':
+                boucle = false;
+            break;
+
+            default:
+                CLEAR();
+				std::cout << "Entrée invalide.\n\n";
+			break;
+		}
+
+	}while(boucle);
 }
 
 

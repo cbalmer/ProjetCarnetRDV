@@ -111,7 +111,7 @@ std::string ListeRDV::afficher() const
     RDV *c = _tete;
     while(c != nullptr)
     {
-        oss << c->Nom << ": " << c->d.str() << " de " << c->hDeb.str() << " à " << c->hFin.str() << std::endl;
+        oss << c->Nom << ": " << c->d.str() << " de " << c->hDeb.str() << " à " << c->hFin.str() <<"\n";
         c = c->suiv;
     }
 
@@ -144,7 +144,23 @@ void ListeRDV::modifierHeureFin(const std::string & nom, const Horaire & hFin)
         rdv->hFin = hFin;
     }
 }
+  ListeRDV ListeRDV::recherche(const Date &d)
+  {
+	ListeRDV lRDV;
 
+	RDV* c = _tete;
+	while(c)
+	{
+
+
+		if(c->d == d)
+        {
+			lRDV.ajouter(c->Nom, c->d, c->hDeb, c->hFin);
+        }
+		c = c->suiv;
+	}
+	return lRDV;
+  }
 
 //int main()
 //{

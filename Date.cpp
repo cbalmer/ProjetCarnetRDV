@@ -127,6 +127,6 @@ bool Date::operator!=(Date const& d)const
 
 bool Date::operator==(Date const& d)const
 {
-    return _time == d._time;
+    return jour() == d.jour() && mois()==d.mois() && annee()==d.annee();
 }
 

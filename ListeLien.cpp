@@ -109,7 +109,6 @@ bool ListeLien::ajouter(Personne *p, RDV *r)
 ListeRDV ListeLien::recherche(Personne* p)
 {
 	ListeRDV lRDV;
-
 	Lien* c = _tete;
 	while(c)
 	{
@@ -117,8 +116,6 @@ ListeRDV ListeLien::recherche(Personne* p)
 			lRDV.ajouter(c->r->Nom, c->r->d, c->r->hDeb, c->r->hFin);
 		c = c->suiv;
 	}
-
-
 	return lRDV;
 }
 
@@ -166,3 +163,4 @@ RDV* ListeLien::recherche(Personne* p, Date   const&d, Horaire  const&hd, Horair
 
     return nullptr;
 }
+

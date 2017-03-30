@@ -31,9 +31,9 @@ class Date
 
 		bool operator!=(Date const& d)const;
 		bool operator==(Date const& d)const;
-
+        time_t _time;
 	private:
-		time_t _time;
+
 };
 
 #endif

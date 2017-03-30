@@ -25,6 +25,7 @@ class ListeRDV
 
         void ajouter(const std::string & nom, const Date & d, const Horaire & hDeb, const Horaire & hFin);
         RDV* recherche(const std::string & nom);
+        ListeRDV recherche(const Date &d);
         void supprimer(const std::string & nom);
         void modifierDate(const std::string & nom, const Date & d);
         void modifierHeureDebut(const std::string & nom, const Horaire & hDeb);

@@ -143,10 +143,13 @@ bool CarnetRDV::EstRDV(std::string &nom,std::string &prenom)
     }
 }
 
-bool CarnetRDV::supprimerPersonne(std::string nom,std::string prenom)
+bool CarnetRDV::supprimerPersonne(std::string prenom,std::string nom)
 {
     if(EstRDV(nom,prenom)==false)
+    {
+        listp.supprimer(prenom,nom);
         return true;
+    }
     else
         return false;
 }
@@ -160,4 +163,7 @@ void CarnetRDV::modifierPersonne(std::string prenom, std::string nom,std::string
 {
     listp.modifier(prenom,nom,nouveaunom,nouveauprenom,tel,mail);
 }
-
+std::string CarnetRDV::AfficherRDVs_dune_Date(Date const &d)
+{
+    return lrdv.recherche(d).afficher();
+}
