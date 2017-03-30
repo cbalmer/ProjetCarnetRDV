@@ -7,6 +7,7 @@ bool CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const
     lrdv.ajouter(nom,date,hDeb,hFin);
 }
 
+
 bool CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb,Horaire const  &hFin)
 {
     lrdv.ajouter(nom,date,hDeb,hFin);
