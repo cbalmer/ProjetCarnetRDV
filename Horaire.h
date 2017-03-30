@@ -7,14 +7,6 @@
 #include <iomanip>
 #include <ctime>
 
-///Structure uniquement utilisée pour l'ajout d'une durée à un horaire via les opérateurs
-struct Duree
-{
-	int h, m;
-	Duree(int ch, int cm): h{ch}, m{cm} {}
-};
-
-
 class Horaire
 {
 	public:
