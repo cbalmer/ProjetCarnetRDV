@@ -149,20 +149,7 @@ void ListePersonne::supprimer(std::string prenom, std::string nom)
         }
     }
 }
-void ListePersonne::afficherlistpersonne()
-{
-    Personne *curs=p;
-    while(curs!=0)
-    {
-        std::cout<<curs->nom<<std::endl;
-         std::cout<<curs->prenom<<std::endl;
-          std::cout<<curs->mail<<std::endl;
-           std::cout<<curs->tel<<std::endl;
-           std::cout<<std::endl << std::endl;
-        curs=curs->suiv;
-    }
-    std::cout<<"----------------------------------------------------"<<std::endl;
-}
+
 void ListePersonne:: modifier(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail)
 {
     nom[0]=std::toupper(nom[0]);
