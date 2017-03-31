@@ -368,10 +368,24 @@ void gestionRDV(CarnetRDV* carnet)
                     std::cin >>j>>c>>m>>c>>a;
                     std::cout << "Saisir Heure debut hh:mm" << std::endl;
                     std::cin >> hdebut>>c>>mdebut;
+                    std::cout << "Saisir Heure fin hh:mm (facultatif)" << std::endl;
+                    std::string strf;
                     std::cin.ignore();
+                    std::getline(std::cin,strf);
+
+                    if(strf.size() > 2)
+                    {
+                        std::istringstream iss(strf);
+                        iss >> hfin>>c>>mfin;
+                    }
+                    else
+                    {
+                        hfin = hdebut+1;
+                        mfin = mdebut;
+                    }
     //               std::cout << "Saisir Heure fin hh:mm" << std::endl;
     //               std::cin >> hfin>>c>>mfin;
-                    carnet->creerRDV(nomRDV,Date(j,m,a),Horaire(hdebut,mdebut),Horaire(hdebut+1,mdebut+1));
+                    carnet->creerRDV(nomRDV,Date(j,m,a),Horaire(hdebut,mdebut),Horaire(hfin,mfin));
                     pause();
                     CLEAR();
                 }
