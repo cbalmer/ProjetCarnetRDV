@@ -4,7 +4,10 @@
 
 Date::Date(): _time(time(NULL))
 {}
-
+time_t  Date::d_Time() const
+{
+    return _time;
+}
 Date::Date(int j, int m, int a)
 {
 	tm* d;//structure contenant des infos temporelles

@@ -12,6 +12,19 @@ ListeRDV::~ListeRDV()
         _tete=c;
     }
 }
+bool ListeRDV::estDouble(std::string  nomRDV)
+{
+
+    bool estdouble=false;
+    RDV *curs=_tete;
+    while(curs!=0 && !estdouble)
+    {
+        if(curs->Nom==nomRDV )
+            estdouble=true;
+        curs=curs->suiv;
+    }
+    return estdouble;
+}
 ListeRDV::ListeRDV(const ListeRDV &rdv)
 {
     RDV *curs = rdv._tete;

@@ -22,15 +22,62 @@ bool CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const
 }
 
 
-bool CarnetRDV::creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb,Horaire const  &hFin)
+bool CarnetRDV::creerRDV(std::string  nom, Date const& date, Horaire const& hDeb,Horaire const  &hFin)
 {
-    ///insert bdd
-    lrdv.ajouter(nom,date,hDeb,hFin);
+
+    if(!lrdv.estDouble(nom))
+    {
+        MYSQL_BIND bind[4];
+        MYSQL_STMT *stmt;
+        std::string requete="INSERT INTO RDV(Nom_RDV, RDV_date, RDV_heuredeb, RDV_heureFin)values(?,?,?,?)";
+        stmt= mysql_stmt_init(&CarnetRDV::mysql);
+        mysql_stmt_prepare(stmt,requete.c_str(),requete.size());
+
+        bind[0].buffer_type=MYSQL_TYPE_VARCHAR;
+        std:: string lenomduRDV(nom);
+        bind[0].buffer=&lenomduRDV[0];
+        bind[0].is_null=0;
+        unsigned long i = lenomduRDV.size();
+        bind[0].length=&i;
+
+        bind[1].buffer_type=MYSQL_TYPE_LONG;
+        time_t j =  date.d_Time();
+        bind[1].buffer=&j;
+        bind[1].is_null=0;
+        bind[1].length=0;
+
+        bind[2].buffer_type=MYSQL_TYPE_VARCHAR;
+        std::ostringstream oss;
+        oss << hDeb.heure() <<":"<<hDeb.minute();
+        std::string ladatedeb=oss.str();
+        bind[2].buffer=&ladatedeb[0];
+        bind[2].is_null=0;
+        unsigned long jj = ladatedeb.size();
+        bind[2].length=&jj;
+
+
+
+        bind[3].buffer_type=MYSQL_TYPE_VARCHAR;
+        std::ostringstream oss2;
+        oss2 << hFin.heure() <<":"<<hFin.minute();
+        std::string heurefin=oss2.str();
+        bind[3].buffer=&heurefin[0];
+        bind[3].is_null=0;
+        unsigned long k = heurefin.size();
+        bind[3].length=&k;
+        mysql_stmt_bind_param(stmt,bind);
+        mysql_stmt_execute(stmt);
+        mysql_stmt_close(stmt);
+
+
+        lrdv.ajouter(nom,date,hDeb,hFin);
+    }
+
 }
 
 bool CarnetRDV::supprimerRDV(std::string const & nom)
 {
-    ///insert bdd
+    ///delete bdd
     ll.supprimer(lrdv.recherche(nom));
     lrdv.supprimer(nom);
 }
@@ -50,9 +97,100 @@ bool CarnetRDV::EstDispo(std::string  nom, std::string  prenom,Date const  &date
 
 bool CarnetRDV::ajouterPersonne( std::string prenom,  std::string nom,std::string  tel, std::string   mail)
 {
-    ///insert bdd
+    if(!listp.estDouble(nom, prenom))
+    {
+        MYSQL_BIND bind[4];
+        MYSQL_STMT *stmt;
+        std::string requete="INSERT INTO Personne(Nom_Personne, Prenom_Personne, Tel_Personne, Mail_Personne)values(?,?,?,?)";
+        stmt= mysql_stmt_init(&CarnetRDV::mysql);
+        mysql_stmt_prepare(stmt,requete.c_str(),requete.size());
+
+        bind[0].buffer_type=MYSQL_TYPE_VARCHAR;
+        std:: string lenom(nom);
+        bind[0].buffer=&lenom[0];
+        bind[0].is_null=0;
+        unsigned long i = lenom.size();
+        bind[0].length=&i;
+
+       bind[1].buffer_type=MYSQL_TYPE_VARCHAR;
+       std::string leprenom(prenom);
+        bind[1].buffer=&leprenom[0];
+        bind[1].is_null=0;
+        unsigned long j = leprenom.size();
+        bind[1].length=&j;
+
+        bind[2].buffer_type=MYSQL_TYPE_VARCHAR;
+       std::string letel(tel);
+        bind[2].buffer=&letel[0];
+        bind[2].is_null=0;
+        unsigned long k = letel.size();
+        bind[2].length=&k;
+
+        bind[3].buffer_type=MYSQL_TYPE_VARCHAR;
+         std::string lemail(mail);
+        bind[3].buffer=&lemail[0];
+        bind[3].is_null=0;
+          unsigned long l = lemail.size();
+        bind[3].length=&l;
+
+       mysql_stmt_bind_param(stmt,bind);
+        mysql_stmt_execute(stmt);
+        mysql_stmt_close(stmt);
+    }
 	listp.ajouter(prenom,nom,tel,mail);
 	return 1;
+}
+
+int CarnetRDV::getIDPersonne(std::string nom,std::string prenom)
+{
+        MYSQL_BIND bind[2];
+        MYSQL_STMT *stmt;
+        std::string requete="Select Id_Personne from Personne where Nom_Personne=? and Prenom_Personne=?";
+        stmt= mysql_stmt_init(&CarnetRDV::mysql);
+        mysql_stmt_prepare(stmt,requete.c_str(),requete.size());
+
+        bind[0].buffer_type=MYSQL_TYPE_VARCHAR;
+        std:: string lenom(nom);
+        bind[0].buffer=&lenom[0];
+        bind[0].is_null=0;
+        unsigned long i = lenom.size();
+        bind[0].length=&i;
+
+        bind[1].buffer_type=MYSQL_TYPE_VARCHAR;
+        std::string leprenom(prenom);
+        bind[1].buffer=&leprenom[0];
+        bind[1].is_null=0;
+        unsigned long j = leprenom.size();
+        bind[1].length=&j;
+
+        mysql_stmt_bind_param(stmt, bind);
+
+        mysql_stmt_execute(stmt);
+        mysql_stmt_fetch(stmt);
+
+
+//
+//        MYSQL_RES *result = NULL;
+//        MYSQL_ROW row;
+//        mysql_query(&mysql, "SELECT Id_Personne FROM Personne");
+//        Déclaration des objets
+//        MYSQL_RES *result = NULL;
+//        result = mysql_use_result(&mysql);
+//        MYSQL_ROW row;
+//        std::string ch;
+//        while ((row = mysql_fetch_row(result)))
+//        {
+//            ch = row[0];
+//        }
+//        std::istringstream iss;
+//        iss.str(ch);
+//        int id;
+//        iss >> id;
+//        std::cout << id;
+//        return id;
+//        mysql_free_result(result);
+//        mysql_close(&mysql);
+//          mysql_stmt_close(stmt);
 }
 
 int CarnetRDV::ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne)
@@ -72,6 +210,7 @@ int CarnetRDV::ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, s
                 return 2;
             if(EstDispo(pers->nom,pers->prenom,rdv->d,rdv->hDeb,rdv->hFin))
             {
+                getIDPersonne(pers->nom,pers->prenom);
                 ll.ajouter(pers, rdv);
                 return 0;
             }

@@ -30,6 +30,7 @@ class ListeRDV
         void modifierDate(const std::string & nom, const Date & d);
         void modifierHeureDebut(const std::string & nom, const Horaire & hDeb);
         void modifierHeureFin(const std::string & nom, const Horaire & hFin);
+        bool estDouble(std::string nomRDV);
         std::string afficher() const;
 
     private:

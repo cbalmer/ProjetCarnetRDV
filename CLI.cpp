@@ -370,6 +370,8 @@ void gestionRDV(CarnetRDV* carnet)
     //               std::cout << "Saisir Heure fin hh:mm" << std::endl;
     //               std::cin >> hfin>>c>>mfin;
                     carnet->creerRDV(nomRDV,Date(j,m,a),Horaire(hdebut,mdebut),Horaire(hdebut+1,mdebut+1));
+                    pause();
+                    CLEAR();
                 }
             break;
 

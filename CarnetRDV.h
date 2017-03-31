@@ -2,8 +2,8 @@
 #define CarnetRDV_h
 
 #include <string>
-#include <MYSQL/mysql.h>
-
+#include <mysql.h>
+#include <winsock.h>
 #include "ListePersonne.h"
 #include "ListeRDV.h"
 #include "ListeLien.h"
@@ -14,9 +14,10 @@ class CarnetRDV
 {
 	public:
 		bool creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb);
-		bool creerRDV(std::string const &nom, Date const &date,Horaire const & hDeb,Horaire const  &hFin);
+		bool creerRDV(std::string nom, Date const &date,Horaire const & hDeb,Horaire const  &hFin);
 		bool supprimerRDV(std::string const &nom );
 		int ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne);
+		int getIDPersonne(std::string nom,std::string prenom);
 		bool supprimerPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne);
 		bool ajouterPersonne(std::string prenom, std::string nom,std::string  tel, std::string mail);
 		bool supprimerPersonne(std::string nom,std::string prenom);

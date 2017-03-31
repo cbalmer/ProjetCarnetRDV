@@ -15,7 +15,7 @@ class Date
 		int annee() const;
 		int mois() const;
 		int jour() const;
-
+         time_t d_Time() const ;
 		std::string str() const;
 
 		//avance d'un jour
@@ -31,9 +31,9 @@ class Date
 
 		bool operator!=(Date const& d)const;
 		bool operator==(Date const& d)const;
-        time_t _time;
-	private:
 
+	private:
+            time_t _time;
 };
 
 #endif

@@ -13,8 +13,9 @@ int main()
         std::cerr << "Connexion à la base de données impossible.\n";
         return 1;
     }
-
-    cli(carnet);
-
+    carnet->ajouterPersonne("Camille","Balmer","0","0");
+    carnet->creerRDV("YOLO",Date(30,3,2017),Horaire(12,45));
+    carnet->ajouterPersonneRDV("YOLO","Balmer","Camille");
+   cli(carnet);
     return 0;
 }
