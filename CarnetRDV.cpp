@@ -316,6 +316,73 @@ int CarnetRDV::ajouterPersonneRDV(std::string nomRDV, std::string NomPersonne, s
     }
 }
 
+void CarnetRDV::ModifierPersonne_BDD(std::string prenom, std::string nom,std::string nouveaunom,std::string nouveauprenom,std::string tel, std::string mail)
+{
+        MYSQL_BIND bind[5];
+        MYSQL_STMT *stmt;
+        std::string requete="update Personne set Nom_Personne=?, Prenom_Personne=?, Tel_Personne=?, Mail_Personne=? where Id_Personne=?";
+        stmt= mysql_stmt_init(&CarnetRDV::mysql);
+        mysql_stmt_prepare(stmt,requete.c_str(),requete.size());
+        bind[0].buffer_type=MYSQL_TYPE_VARCHAR;
+        std:: string lenom(nouveaunom);
+        bind[0].buffer=&lenom[0];
+        bind[0].is_null=0;
+        unsigned long i = lenom.size();
+        bind[0].length=&i;
+       bind[1].buffer_type=MYSQL_TYPE_VARCHAR;
+       std::string leprenom(nouveauprenom);
+        bind[1].buffer=&leprenom[0];
+        bind[1].is_null=0;
+        unsigned long j = leprenom.size();
+        bind[1].length=&j;
+        bind[2].buffer_type=MYSQL_TYPE_VARCHAR;
+       std::string letel(tel);
+        bind[2].buffer=&letel[0];
+        bind[2].is_null=0;
+        unsigned long k = letel.size();
+        bind[2].length=&k;
+        bind[3].buffer_type=MYSQL_TYPE_VARCHAR;
+         std::string lemail(mail);
+        bind[3].buffer=&lemail[0];
+        bind[3].is_null=0;
+          unsigned long l = lemail.size();
+        bind[3].length=&l;
+        unsigned long int idpersonne = getIDPersonne(nom,prenom);
+        bind[4].buffer_type= MYSQL_TYPE_LONG;
+        bind[4].buffer=&idpersonne;
+        bind[4].is_null= 0;
+        bind[4].length = 0;
+        mysql_stmt_bind_param(stmt,bind);
+        mysql_stmt_execute(stmt);
+        std::cout << mysql_stmt_error(stmt)<<std::endl;
+        mysql_stmt_close(stmt);
+}
+
+void CarnetRDV::supprimerPersonneDuRDV_BDD(std::string nomrdv,std::string nom,std::string prenom)
+{
+        MYSQL_BIND bind[2];
+        MYSQL_STMT *stmt;
+        std::string requete="delete from Lien where id_RDV=? and id_Personne=?";
+        stmt= mysql_stmt_init(&CarnetRDV::mysql);
+        mysql_stmt_prepare(stmt,requete.c_str(),requete.size());
+
+        unsigned long int idrdv = getIDRdv(nomrdv);
+        bind[0].buffer_type= MYSQL_TYPE_LONG;
+        bind[0].buffer=&idrdv;
+        bind[0].is_null= 0;
+        bind[0].length = 0;
+
+        unsigned long int idpersonne = getIDPersonne(nom,prenom);
+        bind[1].buffer_type= MYSQL_TYPE_LONG;
+        bind[1].buffer=&idpersonne;
+        bind[1].is_null= 0;
+        bind[1].length = 0;
+
+        mysql_stmt_bind_param(stmt,bind);
+        mysql_stmt_execute(stmt);
+        std::cout << mysql_stmt_error(stmt)<<std::endl;
+        mysql_stmt_close(stmt);
+}
 bool CarnetRDV::supprimerPersonneRDV(std::string nomRDV, std::string NomPersonne, std::string PrenomPersonne)
 {
     ///insert bdd
@@ -331,6 +398,7 @@ bool CarnetRDV::supprimerPersonneRDV(std::string nomRDV, std::string NomPersonne
         {
             Personne *pers = listp.rechercherPersonne(NomPersonne, PrenomPersonne);
             ll.supprimer(pers, rdv);
+            supprimerPersonneDuRDV_BDD(rdv->Nom,pers->nom,pers->prenom);
             return true;
         }
     }
@@ -424,6 +492,8 @@ void CarnetRDV::modifierPersonne(std::string prenom, std::string nom,std::string
 {
     ///insert bdd
     listp.modifier(prenom,nom,nouveaunom,nouveauprenom,tel,mail);
+    ModifierPersonne_BDD(prenom,nom,nouveaunom,nouveauprenom,tel,mail);
+
 }
 std::string CarnetRDV::AfficherRDVs_dune_Date(Date const &d)
 {
