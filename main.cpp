@@ -5,6 +5,7 @@
 
 int main()
 {
+    //std::cout << time(NULL);return 0;
     setlocale(LC_ALL,"");
     CarnetRDV* carnet = new CarnetRDV();
     if(!CarnetRDV::initialisation())
@@ -13,7 +14,11 @@ int main()
         return 1;
     }
 
-    carnet->import();
+    if(!carnet->import())
+    {
+        std::cerr << "L'import s'est mal passé:\n" << mysql_error(&CarnetRDV::mysql);
+        pause();
+    }
 
     cli(carnet);
 

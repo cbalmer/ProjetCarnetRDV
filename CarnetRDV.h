@@ -2,6 +2,7 @@
 #define CarnetRDV_h
 
 #include <string>
+#include <map>
 #ifdef _WIN32
     #include <mysql.h>
     #include <winsock.h>
@@ -50,7 +51,7 @@ class CarnetRDV
 
     public:static bool initialisation();
     public:bool import();
-    private:static MYSQL mysql;
+    public:static MYSQL mysql;
 };
 
 #endif

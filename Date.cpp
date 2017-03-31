@@ -4,6 +4,10 @@
 
 Date::Date(): _time(time(NULL))
 {}
+
+Date::Date(time_t t): _time(t)
+{}
+
 time_t  Date::d_Time() const
 {
     return _time;

@@ -4,7 +4,79 @@ MYSQL CarnetRDV::mysql;
 
 bool CarnetRDV::import()
 {
+    std::map<long, Personne*> idPersonne;
+    std::map<long, RDV*> idRDV;
 
+    MYSQL_RES *res;
+    MYSQL_ROW row;
+
+    ///Personnes
+    if(mysql_query(&mysql,"SELECT * FROM Personne") != 0)//retourne 0 si succes
+        return false;
+
+    res = mysql_use_result(&mysql);
+    while(row = mysql_fetch_row(res))
+    {
+        long id;
+        std::istringstream iss(row[0]);
+
+        iss >> id;
+        listp.ajouter(row[2],row[1],row[3],row[4]);
+        idPersonne[id] = listp.rechercherPersonne(row[1],row[2]);
+    }
+    mysql_free_result(res);
+
+
+
+    ///RDV
+    if(mysql_query(&mysql,"SELECT * FROM RDV") != 0)//retourne 0 si succes
+        return false;
+
+    res = mysql_use_result(&mysql);
+    while(row = mysql_fetch_row(res))
+    {
+        long id;
+        time_t d;
+        int hd, md, hf, mf;
+        char buf;
+        std::istringstream iss(row[0]);
+        iss >> id;
+        iss.str(row[2]);
+        iss.clear();
+        iss >> d;
+
+        iss.str(row[3]);
+        iss.clear();
+        iss >> hd >> buf >> md;
+        iss.str(row[4]);
+        iss.clear();
+        iss >> hf >> buf >> mf;
+
+        lrdv.ajouter(row[1],Date(d),Horaire(hd,md),Horaire(hf,mf));
+        idRDV[id] = lrdv.recherche(row[1]);
+    }
+    mysql_free_result(res);
+
+
+    ///Liens
+    if(mysql_query(&mysql,"SELECT * FROM Lien") != 0)//retourne 0 si succes
+        return false;
+
+    res = mysql_use_result(&mysql);
+    while(row = mysql_fetch_row(res))
+    {
+        long idp, idr;
+        std::istringstream iss(row[0]);
+        iss >> idp;
+        iss.str(row[1]);
+        iss.clear();
+        iss >> idr;
+
+        ll.ajouter(idPersonne[idp],idRDV[idr]);
+    }
+    mysql_free_result(res);
+
+    return true;
 }
 
 bool CarnetRDV::initialisation()

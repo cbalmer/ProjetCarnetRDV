@@ -14,5 +14,6 @@
 #include "CarnetRDV.h"
 
 void cli(CarnetRDV* carnet);
+void pause();
 
 #endif

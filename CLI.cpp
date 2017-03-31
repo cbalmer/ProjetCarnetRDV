@@ -206,7 +206,7 @@ void menuRDV(std::string nomRDV, CarnetRDV *carnet)
         std::cout << "1. Affichage des personnes du RDV\n";
         std::cout << "2. Ajouter une personne du RDV\n";
         std::cout << "3. Supprimer une personne du RDV\n";
-        std::cout << "4. Supprimer le RDV du RDV\n";
+        std::cout << "4. Supprimer le RDV\n";
         std::cout << "R. Retour\n";
 
 		 boucle = true;
