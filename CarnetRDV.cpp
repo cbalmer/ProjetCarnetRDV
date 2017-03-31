@@ -2,6 +2,11 @@
 
 MYSQL CarnetRDV::mysql;
 
+bool CarnetRDV::import()
+{
+
+}
+
 bool CarnetRDV::initialisation()
 {
     mysql_init(&mysql);

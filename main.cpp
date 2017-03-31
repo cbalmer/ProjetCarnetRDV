@@ -7,7 +7,13 @@ int main()
 {
     setlocale(LC_ALL,"");
     CarnetRDV* carnet = new CarnetRDV();
-    CarnetRDV::initialisation();
+    if(!CarnetRDV::initialisation())
+    {
+        std::cerr << "Connexion à la base de données impossible.\n";
+        return 1;
+    }
+
+    carnet->import();
 
     cli(carnet);
 
