@@ -13,6 +13,10 @@
 class CarnetRDV
 {
 	public:
+		int getIDRdv(std::string nom);
+		void InsererLien(int idpers,int idrdv);
+		void supprimerRDV_BDD(std::string nom);
+        void supprimerPersonne_BDD(std::string nom,std::string prenom);
 		bool creerRDV(std::string const& nom, Date const& date, Horaire const& hDeb);
 		bool creerRDV(std::string nom, Date const &date,Horaire const & hDeb,Horaire const  &hFin);
 		bool supprimerRDV(std::string const &nom );

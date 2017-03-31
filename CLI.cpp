@@ -288,7 +288,9 @@ void menuRDV(std::string nomRDV, CarnetRDV *carnet)
                          }
                     }
                     boucle=false;
+                    pause();
                     CLEAR();
+
             }
             break;
             case 'r':
